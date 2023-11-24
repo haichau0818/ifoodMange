@@ -1,5 +1,6 @@
 ﻿
 using FoodManage.DTO;
+using FoodManage.GUI.Forms;
 using FoodManage.GUI.UserControls.Foods;
 using FoodManage.GUI.UserControls.Home;
 using System;
@@ -90,7 +91,10 @@ namespace FoodManage.GUI
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Hide();
+            frmLogin loginForm = new frmLogin();
+            loginForm.Show();
+            
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -163,6 +167,12 @@ namespace FoodManage.GUI
             uListFood.Dock = DockStyle.Fill;
             pnlContent.Controls.Add(uListFood);
             pnlContent.Controls[pnlContent.Controls.Count - 1].BringToFront();
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmLogin loginForm = new frmLogin();
+            loginForm.Show();
         }
     }
 }

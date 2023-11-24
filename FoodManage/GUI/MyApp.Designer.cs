@@ -143,6 +143,8 @@
             pnlUser.BorderColor = Color.PaleVioletRed;
             pnlUser.BorderRadius = 20;
             pnlUser.BorderSize = 0;
+            pnlUser.colorBot = Color.Empty;
+            pnlUser.colorTop = Color.Empty;
             pnlUser.Controls.Add(buttonRadius4);
             pnlUser.Controls.Add(buttonRadius3);
             pnlUser.Controls.Add(buttonRadius2);
@@ -376,6 +378,8 @@
             pnlContent.BorderColor = Color.PaleVioletRed;
             pnlContent.BorderRadius = 40;
             pnlContent.BorderSize = 0;
+            pnlContent.colorBot = Color.Empty;
+            pnlContent.colorTop = Color.Empty;
             pnlContent.Controls.Add(pnlUser);
             pnlContent.Dock = DockStyle.Fill;
             pnlContent.ForeColor = Color.White;
@@ -400,6 +404,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Food Manage";
             WindowState = FormWindowState.Maximized;
+            FormClosed += frmMain_FormClosed;
             pnlHeader.ResumeLayout(false);
             pnlUser.ResumeLayout(false);
             pnlMenu.ResumeLayout(false);
