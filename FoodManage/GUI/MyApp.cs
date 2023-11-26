@@ -1,5 +1,4 @@
-﻿
-using FoodManage.DTO;
+﻿using FoodManage.DTO;
 using FoodManage.GUI.Forms;
 using FoodManage.GUI.UserControls.Foods;
 using FoodManage.GUI.UserControls.Home;
@@ -17,9 +16,11 @@ namespace FoodManage.GUI
 {
     public partial class frmMain : Form
     {
-        public DTO_Users users;
-        public frmMain()
+        public DTO_Users _users;
+        public frmMain(DTO_Users user)
         {
+            this._users = user;
+
             InitializeComponent();
         }
 
@@ -94,7 +95,7 @@ namespace FoodManage.GUI
             this.Hide();
             frmLogin loginForm = new frmLogin();
             loginForm.Show();
-            
+
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -173,6 +174,12 @@ namespace FoodManage.GUI
         {
             frmLogin loginForm = new frmLogin();
             loginForm.Show();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            btnUserInfo.Text = _users.Name;
+
         }
     }
 }

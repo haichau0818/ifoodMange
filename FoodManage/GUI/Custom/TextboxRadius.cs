@@ -27,7 +27,7 @@ namespace FoodManage.GUI.Custom
         private int borderRadius = 0;
         private Color placeholderColor = Color.DarkGray;
         private string placeholderText = "";
-        private bool isPlaceholder = false;
+        public bool isPlaceholder = false;
         private bool isPasswordChar = false;
 
 

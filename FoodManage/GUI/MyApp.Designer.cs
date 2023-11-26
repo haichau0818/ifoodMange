@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             pnlHeader = new Panel();
-            buttonRadius1 = new Custom.ButtonRadius();
+            btnUserInfo = new Custom.ButtonRadius();
             btnMinimize = new Custom.ButtonRadius();
             btnClose = new Custom.ButtonRadius();
             pnlUser = new Custom.PanelRadius();
@@ -57,7 +57,7 @@
             // 
             // pnlHeader
             // 
-            pnlHeader.Controls.Add(buttonRadius1);
+            pnlHeader.Controls.Add(btnUserInfo);
             pnlHeader.Controls.Add(btnMinimize);
             pnlHeader.Controls.Add(btnClose);
             pnlHeader.Dock = DockStyle.Top;
@@ -66,30 +66,30 @@
             pnlHeader.Size = new Size(1178, 119);
             pnlHeader.TabIndex = 1;
             // 
-            // buttonRadius1
+            // btnUserInfo
             // 
-            buttonRadius1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonRadius1.BackColor = Color.FromArgb(206, 26, 69);
-            buttonRadius1.BackgroundColor = Color.FromArgb(206, 26, 69);
-            buttonRadius1.BorderColor = Color.PaleVioletRed;
-            buttonRadius1.BorderRadius = 20;
-            buttonRadius1.BorderSize = 0;
-            buttonRadius1.FlatAppearance.BorderSize = 0;
-            buttonRadius1.FlatStyle = FlatStyle.Flat;
-            buttonRadius1.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonRadius1.ForeColor = Color.White;
-            buttonRadius1.Image = (Image)resources.GetObject("buttonRadius1.Image");
-            buttonRadius1.ImageAlign = ContentAlignment.MiddleLeft;
-            buttonRadius1.Location = new Point(1044, 56);
-            buttonRadius1.Name = "buttonRadius1";
-            buttonRadius1.Size = new Size(134, 50);
-            buttonRadius1.TabIndex = 1;
-            buttonRadius1.Text = "User";
-            buttonRadius1.TextColor = Color.White;
-            buttonRadius1.UseVisualStyleBackColor = false;
-            buttonRadius1.Click += buttonRadius1_Click;
-            buttonRadius1.MouseLeave += buttonRadius1_MouseLeave;
-            buttonRadius1.MouseMove += buttonRadius1_MouseMove;
+            btnUserInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnUserInfo.BackColor = Color.FromArgb(206, 26, 69);
+            btnUserInfo.BackgroundColor = Color.FromArgb(206, 26, 69);
+            btnUserInfo.BorderColor = Color.PaleVioletRed;
+            btnUserInfo.BorderRadius = 20;
+            btnUserInfo.BorderSize = 0;
+            btnUserInfo.FlatAppearance.BorderSize = 0;
+            btnUserInfo.FlatStyle = FlatStyle.Flat;
+            btnUserInfo.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnUserInfo.ForeColor = Color.White;
+            btnUserInfo.Image = (Image)resources.GetObject("btnUserInfo.Image");
+            btnUserInfo.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUserInfo.Location = new Point(1044, 56);
+            btnUserInfo.Name = "btnUserInfo";
+            btnUserInfo.Size = new Size(134, 50);
+            btnUserInfo.TabIndex = 1;
+            btnUserInfo.Text = "User";
+            btnUserInfo.TextColor = Color.White;
+            btnUserInfo.UseVisualStyleBackColor = false;
+            btnUserInfo.Click += buttonRadius1_Click;
+            btnUserInfo.MouseLeave += buttonRadius1_MouseLeave;
+            btnUserInfo.MouseMove += buttonRadius1_MouseMove;
             // 
             // btnMinimize
             // 
@@ -405,6 +405,7 @@
             Text = "Food Manage";
             WindowState = FormWindowState.Maximized;
             FormClosed += frmMain_FormClosed;
+            Load += frmMain_Load;
             pnlHeader.ResumeLayout(false);
             pnlUser.ResumeLayout(false);
             pnlMenu.ResumeLayout(false);
@@ -425,7 +426,7 @@
         private Custom.ButtonRadius btnFood;
         private Custom.ButtonRadius btnMinimize;
         private Custom.ButtonRadius btnClose;
-        private Custom.ButtonRadius buttonRadius1;
+        private Custom.ButtonRadius btnUserInfo;
         private Custom.PanelRadius pnlUser;
         private Custom.ButtonRadius buttonRadius3;
         private Custom.ButtonRadius buttonRadius2;

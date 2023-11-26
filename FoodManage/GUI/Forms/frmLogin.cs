@@ -1,5 +1,6 @@
 ﻿using FoodManage.DAL;
 using FoodManage.DTO;
+using FoodManage.ULTI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,14 +34,20 @@ namespace FoodManage.GUI.Forms
         public frmLogin()
         {
             InitializeComponent();
+
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
         }
-
+        string userName = "";
+        string password = "";
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            userName = this.txtUsername.Text;
+            password = this.txtPassword.Text;
 
-            string userName = txtUsername.Text.Trim();
-            string password = txtPassword.Text.Trim();
+            //hash password with key: ifoodmanagebyhai from web online
+            password = handle.Encrypt("aWZvb2RtYW5hZ2VieWhhaQ==", password);
+            password = handle.Decrypt("aWZvb2RtYW5hZ2VieWhhaQ==", password);
+
 
             if (userName == "" && password == "")
             {
@@ -60,6 +67,8 @@ namespace FoodManage.GUI.Forms
             }
             else
             {
+
+                //Get login in4 from db
                 DTO_Users login = UserDAL.Instance.login(userName, password);
                 if (login.Username != null)
                 {
@@ -95,7 +104,7 @@ namespace FoodManage.GUI.Forms
                         ConfigurationManager.RefreshSection("appSettings");
                     }
 
-                    frmMain frmMain = new frmMain();
+                    frmMain frmMain = new frmMain(login);
                     this.Hide();
                     frmMain.Show();
                 }
@@ -104,10 +113,10 @@ namespace FoodManage.GUI.Forms
                     lblMessageEr.Visible = true;
                     lblMessageEr.Text = "Username or password not correct!";
                 }
-            } 
+            }
 
         }
-
+        #region event form
         private void picClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -117,21 +126,32 @@ namespace FoodManage.GUI.Forms
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
+        #endregion
         private void frmLogin_Load(object sender, EventArgs e)
         {
             // Get the username and password from the app.config file
-            string username = ConfigurationManager.AppSettings["username"];
-            string password = ConfigurationManager.AppSettings["password"];
+            string _username = ConfigurationManager.AppSettings["username"];
+            string _password = ConfigurationManager.AppSettings["password"];
 
             // If the username and password are not empty, fill them in the textboxes and check the remember me checkbox
-            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            if (!string.IsNullOrEmpty(_username) && !string.IsNullOrEmpty(_password))
             {
-                btnLogin.Focus();
-                txtUsername.Text = username;
-                txtPassword.Text = password;
-                ckdRemember.Checked = true;
+                this.txtUsername.isPlaceholder = false;
+                this.txtPassword.isPlaceholder = false;
+                this.txtPassword.PasswordChar = true;
+                this.txtUsername.ForeColor = Color.Black;
+                this.txtUsername.Text = _username;
+                this.txtPassword.PasswordChar = true;
+                this.txtPassword.ForeColor = Color.Black;
+                this.txtPassword.Text = _password;
+                this.ckdRemember.Checked = true;
+            }
+            else
+            {
+                this.ckdRemember.Checked = false;
             }
         }
+
+
     }
 }

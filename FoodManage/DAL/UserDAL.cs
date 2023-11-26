@@ -45,8 +45,6 @@ namespace FoodManage.DAL
                 dt.Password = dr["password"].ToString();
                 dt.Email = dr["email"].ToString();
                 dt.Name = dr["name"].ToString();
-                //this.avatar = dr["avatar"].ToString();
-
             }
             return dt;
 
