@@ -1,7 +1,10 @@
 ﻿using FoodManage.DTO;
 using FoodManage.GUI.Forms;
+using FoodManage.GUI.Forms.Users;
 using FoodManage.GUI.UserControls.Foods;
 using FoodManage.GUI.UserControls.Home;
+using FoodManage.GUI.UserControls.Users;
+using FoodManage.ULTI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,10 +20,9 @@ namespace FoodManage.GUI
     public partial class frmMain : Form
     {
         public DTO_Users _users;
-        public frmMain(DTO_Users user)
-        {
-            this._users = user;
 
+        public frmMain()
+        {
             InitializeComponent();
         }
 
@@ -28,7 +30,7 @@ namespace FoodManage.GUI
         {
 
         }
-
+        #region event button
         private void btnHome_MouseMove(object sender, MouseEventArgs e)
         {
             btnHome.BackColor = Color.FromArgb(48, 40, 53);
@@ -90,6 +92,7 @@ namespace FoodManage.GUI
             btnMinimize.BackColor = Color.Transparent;
         }
 
+        #endregion
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -120,54 +123,17 @@ namespace FoodManage.GUI
         }
         private void btnFood_Click(object sender, EventArgs e)
         {
-            int i = 0;
-            //Kiểm tra các controls trong pnlMain có tồn tại UC chưa
-            foreach (Control control in pnlContent.Controls)
-            {
-                if (control is UserControl)
-                {
-                    if (control.Name == "uListFood")
-                    {
-                        if (pnlContent.Controls[i].Name == "uListFood")
-                        {
-                            pnlContent.Controls[i].BringToFront();
-                            return;
-                        }
-                    }
-                }
-                i++;
-            }
-            //Nếu chưa tồn tại UC thì Add vào pnlMain
+
             uFoods uListFood = new uFoods();
-            uListFood.Dock = DockStyle.Fill;
-            pnlContent.Controls.Add(uListFood);
-            pnlContent.Controls[pnlContent.Controls.Count - 1].BringToFront();
+            AddUserControl(uListFood);
+
         }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            int i = 0;
-            //Kiểm tra các controls trong pnlMain có tồn tại UC chưa
-            foreach (Control control in pnlContent.Controls)
-            {
-                if (control is UserControl)
-                {
-                    if (control.Name == "uHome")
-                    {
-                        if (pnlContent.Controls[i].Name == "uHome")
-                        {
-                            pnlContent.Controls[i].BringToFront();
-                            return;
-                        }
-                    }
-                }
-                i++;
-            }
-            //Nếu chưa tồn tại UC thì Add vào pnlMain
+
             uHome uListFood = new uHome();
-            uListFood.Dock = DockStyle.Fill;
-            pnlContent.Controls.Add(uListFood);
-            pnlContent.Controls[pnlContent.Controls.Count - 1].BringToFront();
+            AddUserControl(uListFood);
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -178,8 +144,59 @@ namespace FoodManage.GUI
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            btnUserInfo.Text = _users.Name;
+            if (_users != null)
+            {
+                lblUserInfor.Text = _users.FullName;
+                if (_users.Avatar != null)
+                    picAvatar.Image = byteArrayToImage(_users.Avatar);
+            }
+        }
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            uUsers _uUsers = new uUsers();
+            AddUserControl(_uUsers);
 
         }
+
+        private void AddUserControl(UserControl userControl)
+        {
+            int i = 0;
+            //Kiểm tra các controls trong pnlMain có tồn tại UC chưa
+            foreach (Control control in pnlContent.Controls)
+            {
+                if (control is UserControl)
+                {
+                    if (control.Name == userControl.Name)
+                    {
+                        if (pnlContent.Controls[i].Name == userControl.Name)
+                        {
+                            pnlContent.Controls[i].BringToFront();
+                            return;
+                        }
+                    }
+                }
+                i++;
+            }
+            userControl.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(userControl);
+            pnlContent.Controls[pnlContent.Controls.Count - 1].BringToFront();
+        }
+
+        #region convert image
+
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
+        #endregion
     }
 }

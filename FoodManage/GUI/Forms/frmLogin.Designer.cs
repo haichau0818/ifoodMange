@@ -33,7 +33,7 @@
             label1 = new Label();
             pnlLogin = new Custom.PanelRadius();
             txtPassword = new Custom.TextboxCustom();
-            txtUsername = new Custom.TextboxCustom();
+            txtEmail = new Custom.TextboxCustom();
             ckdRemember = new CheckBox();
             lblMessageEr = new Label();
             label2 = new Label();
@@ -82,7 +82,7 @@
             pnlLogin.colorBot = Color.Transparent;
             pnlLogin.colorTop = Color.FromArgb(184, 185, 209);
             pnlLogin.Controls.Add(txtPassword);
-            pnlLogin.Controls.Add(txtUsername);
+            pnlLogin.Controls.Add(txtEmail);
             pnlLogin.Controls.Add(ckdRemember);
             pnlLogin.Controls.Add(lblMessageEr);
             pnlLogin.Controls.Add(label2);
@@ -114,25 +114,25 @@
             txtPassword.TabIndex = 2;
             txtPassword.UnderLineStyle = false;
             // 
-            // txtUsername
+            // txtEmail
             // 
-            txtUsername.BackColor = SystemColors.Window;
-            txtUsername.BoderFocusColor = Color.Transparent;
-            txtUsername.BoderRadius = 10;
-            txtUsername.BoderSize = 0;
-            txtUsername.BorderColor = Color.Transparent;
-            txtUsername.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUsername.ForeColor = Color.Black;
-            txtUsername.Location = new Point(60, 149);
-            txtUsername.Multiline = false;
-            txtUsername.Name = "txtUsername";
-            txtUsername.Padding = new Padding(7);
-            txtUsername.PasswordChar = false;
-            txtUsername.PlaceholderColor = Color.DarkGray;
-            txtUsername.PlaceholderText = "Username";
-            txtUsername.Size = new Size(301, 35);
-            txtUsername.TabIndex = 1;
-            txtUsername.UnderLineStyle = false;
+            txtEmail.BackColor = SystemColors.Window;
+            txtEmail.BoderFocusColor = Color.Transparent;
+            txtEmail.BoderRadius = 10;
+            txtEmail.BoderSize = 0;
+            txtEmail.BorderColor = Color.Transparent;
+            txtEmail.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            txtEmail.ForeColor = Color.Black;
+            txtEmail.Location = new Point(60, 149);
+            txtEmail.Multiline = false;
+            txtEmail.Name = "txtEmail";
+            txtEmail.Padding = new Padding(7);
+            txtEmail.PasswordChar = false;
+            txtEmail.PlaceholderColor = Color.DarkGray;
+            txtEmail.PlaceholderText = "Email";
+            txtEmail.Size = new Size(301, 35);
+            txtEmail.TabIndex = 1;
+            txtEmail.UnderLineStyle = false;
             // 
             // ckdRemember
             // 
@@ -230,7 +230,7 @@
         private Label lblRemember;
         private CheckBox ckdRemember;
         private Custom.TextboxCustom txtPassword;
-        private Custom.TextboxCustom txtUsername;
+        private Custom.TextboxCustom txtEmail;
 
     }
 }

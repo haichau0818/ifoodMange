@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,14 +11,30 @@ namespace FoodManage.DTO
 {
     public class DTO_Users
     {
-		private string username;
 
-		public string Username
+		private int id;
+
+		public int Id
 		{
-			get { return username; }
-			set { username = value; }
+			get { return id; }
+			set { id = value; }
 		}
 
+		private string fullname;
+
+        public string FullName
+        {
+            get { return fullname; }
+            set { fullname = value; }
+        }
+        private string email;
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
+     
 		private string password;
 
 		public string Password
@@ -26,22 +43,37 @@ namespace FoodManage.DTO
 			set { password = value; }
 		}
 
-		private string email;
+        private string address;
 
-		public string Email
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
+		private bool gender;
+
+		public bool Gender
 		{
-			get { return email; }
-			set { email = value; }
+			get { return gender; }
+			set { gender = value; }
+		}
+		private string phonenumber;
+
+		public string Phonenumber
+		{
+			get { return phonenumber; }
+			set { phonenumber = value; }
 		}
 
-		private string name;
+		private DateTime dateofbird;
 
-		public string Name
-		{
-			get { return name; }
-			set { name = value; }
-		}
-		private byte[] avatar;
+        public DateTime Dateofbird
+        {
+            get { return dateofbird; }
+            set { dateofbird = value; }
+        }
+
+        private byte[] avatar;
 
 		public byte[] Avatar
 		{
@@ -49,25 +81,55 @@ namespace FoodManage.DTO
 			set { avatar = value; }
 		}
 
-		public DTO_Users(string username, string password,string email, string name, byte[] avatar)
-		{
-			this.username = username;
-			this.password= password;
-			this.email = email;	
-			this.name = name;
-			this.avatar= avatar;
+		private int role;
 
+		public int Role
+		{
+			get { return role; }
+			set { role = value; }
 		}
+
+
+		public DTO_Users(
+			int id,
+			string fullname,
+			string email,
+			string password,
+			string address,
+			bool gender,
+			string phonenumber,
+			DateTime dateofbird,
+			byte[] avatar,
+			int role
+			)
+		{
+			this.id = id;
+			this.fullname = fullname;
+			this.email = email;
+			this.password = password;
+			this.address=address;
+			this.gender=gender;
+			this.phonenumber=phonenumber;
+			this.dateofbird = dateofbird;
+			this.avatar = avatar;
+			this.role=role;
+
+        }
 		public DTO_Users()
 		{
         }
         public DTO_Users(DataRow dr)
 		{
-			this.username = dr["username"].ToString();
-			this.password = dr["password"].ToString();
-			this.email = dr["email"].ToString();
-			this.name = dr["name"].ToString();
-			this.avatar = (byte[])dr["avatar"];
+			this.id = (int)dr["id"];
+			this.fullname = dr["fullname"].ToString();
+            this.email = dr["email"].ToString();
+            this.password =dr["password"].ToString();
+            this.address = dr["address"].ToString();
+            this.gender = (bool)dr["gender"];
+            this.phonenumber=dr["phonenumber"].ToString();
+            this.dateofbird=(DateTime)dr["dateofbird"];
+            this.avatar = (byte[])dr["avatar"];
+            this.role = (int)dr["role"];
 
         }
 

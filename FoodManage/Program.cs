@@ -1,3 +1,5 @@
+using FoodManage.GUI;
+
 namespace FoodManage
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace FoodManage
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new GUI.Forms.frmLogin());
+            Application.Run(new frmMain());
         }
     }
 }

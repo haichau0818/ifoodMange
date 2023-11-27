@@ -12,13 +12,14 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace FoodManage.GUI.Forms
 {
     public partial class frmLogin : Form
     {
-
+        #region Rounded Corners Form
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
         private static extern IntPtr CreateRoundRectRgn
@@ -31,17 +32,19 @@ namespace FoodManage.GUI.Forms
             int nHeightEllipse
 
             );
+
+        #endregion
         public frmLogin()
         {
             InitializeComponent();
 
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
         }
-        string userName = "";
+        string email = "";
         string password = "";
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            userName = this.txtUsername.Text;
+            email = this.txtEmail.Text;
             password = this.txtPassword.Text;
 
             //hash password with key: ifoodmanagebyhai from web online
@@ -49,36 +52,36 @@ namespace FoodManage.GUI.Forms
             password = handle.Decrypt("aWZvb2RtYW5hZ2VieWhhaQ==", password);
 
 
-            if (userName == "" && password == "")
+            if (email == "" && password == "")
             {
                 lblMessageEr.Visible = true;
-                lblMessageEr.Text = "Please enter username and password!";
+                lblMessageEr.Text = "Please enter email and password!";
             }
-            else if (userName != "" && password == "")
+            else if (email != "" && password == "")
             {
                 lblMessageEr.Visible = true;
                 lblMessageEr.Text = "Please enter password!";
 
             }
-            else if (userName == "" && password != "")
+            else if (email == "" && password != "")
             {
                 lblMessageEr.Visible = true;
-                lblMessageEr.Text = "Please enter username!";
+                lblMessageEr.Text = "Please enter email!";
             }
             else
             {
 
                 //Get login in4 from db
-                DTO_Users login = UserDAL.Instance.login(userName, password);
-                if (login.Username != null)
+                DTO_Users login = UserDAL.Instance.login(email, password);
+                if (login.Email != null)
                 {
                     if (ckdRemember.Checked)
                     {
                         // Get the configuration file
                         Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-                        // Set the username and password values
-                        config.AppSettings.Settings["username"].Value = userName;
+                        // Set the email and password values
+                        config.AppSettings.Settings["email"].Value = email;
                         config.AppSettings.Settings["password"].Value = password;
 
                         // Save the configuration file
@@ -87,14 +90,14 @@ namespace FoodManage.GUI.Forms
                         // Refresh the app settings section
                         ConfigurationManager.RefreshSection("appSettings");
                     }
-                    // If the remember me checkbox is not checked, clear the username and password from the app.config file
+                    // If the remember me checkbox is not checked, clear the email and password from the app.config file
                     else
                     {
                         // Get the configuration file
                         Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-                        // Clear the username and password values
-                        config.AppSettings.Settings["username"].Value = "";
+                        // Clear the email and password values
+                        config.AppSettings.Settings["email"].Value = "";
                         config.AppSettings.Settings["password"].Value = "";
 
                         // Save the configuration file
@@ -104,14 +107,15 @@ namespace FoodManage.GUI.Forms
                         ConfigurationManager.RefreshSection("appSettings");
                     }
 
-                    frmMain frmMain = new frmMain(login);
+                    frmMain frmMain = new frmMain();
+                    frmMain._users = login;
                     this.Hide();
                     frmMain.Show();
                 }
                 else
                 {
                     lblMessageEr.Visible = true;
-                    lblMessageEr.Text = "Username or password not correct!";
+                    lblMessageEr.Text = "email or password not correct!";
                 }
             }
 
@@ -129,18 +133,18 @@ namespace FoodManage.GUI.Forms
         #endregion
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            // Get the username and password from the app.config file
-            string _username = ConfigurationManager.AppSettings["username"];
+            // Get the email and password from the app.config file
+            string _email = ConfigurationManager.AppSettings["email"];
             string _password = ConfigurationManager.AppSettings["password"];
 
-            // If the username and password are not empty, fill them in the textboxes and check the remember me checkbox
-            if (!string.IsNullOrEmpty(_username) && !string.IsNullOrEmpty(_password))
+            // If the email and password are not empty, fill them in the textboxes and check the remember me checkbox
+            if (!string.IsNullOrEmpty(_email) && !string.IsNullOrEmpty(_password))
             {
-                this.txtUsername.isPlaceholder = false;
+                this.txtEmail.isPlaceholder = false;
                 this.txtPassword.isPlaceholder = false;
                 this.txtPassword.PasswordChar = true;
-                this.txtUsername.ForeColor = Color.Black;
-                this.txtUsername.Text = _username;
+                this.txtEmail.ForeColor = Color.Black;
+                this.txtEmail.Text = _email;
                 this.txtPassword.PasswordChar = true;
                 this.txtPassword.ForeColor = Color.Black;
                 this.txtPassword.Text = _password;

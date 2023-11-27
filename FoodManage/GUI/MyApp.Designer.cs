@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             pnlHeader = new Panel();
-            btnUserInfo = new Custom.ButtonRadius();
+            picAvatar = new Custom.PictureBoxCustom();
             btnMinimize = new Custom.ButtonRadius();
             btnClose = new Custom.ButtonRadius();
             pnlUser = new Custom.PanelRadius();
@@ -38,6 +38,7 @@
             buttonRadius3 = new Custom.ButtonRadius();
             buttonRadius2 = new Custom.ButtonRadius();
             pnlMenu = new Panel();
+            btnUser = new Custom.ButtonRadius();
             btnWarehouse = new Custom.ButtonRadius();
             btnTable = new Custom.ButtonRadius();
             btnFood = new Custom.ButtonRadius();
@@ -47,7 +48,11 @@
             pnlLogo = new Panel();
             pictureBox1 = new PictureBox();
             pnlContent = new Custom.PanelRadius();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            lblUserInfor = new Label();
             pnlHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
             pnlUser.SuspendLayout();
             pnlMenu.SuspendLayout();
             pnlLogo.SuspendLayout();
@@ -57,7 +62,8 @@
             // 
             // pnlHeader
             // 
-            pnlHeader.Controls.Add(btnUserInfo);
+            pnlHeader.Controls.Add(lblUserInfor);
+            pnlHeader.Controls.Add(picAvatar);
             pnlHeader.Controls.Add(btnMinimize);
             pnlHeader.Controls.Add(btnClose);
             pnlHeader.Dock = DockStyle.Top;
@@ -66,30 +72,21 @@
             pnlHeader.Size = new Size(1178, 119);
             pnlHeader.TabIndex = 1;
             // 
-            // btnUserInfo
+            // picAvatar
             // 
-            btnUserInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnUserInfo.BackColor = Color.FromArgb(206, 26, 69);
-            btnUserInfo.BackgroundColor = Color.FromArgb(206, 26, 69);
-            btnUserInfo.BorderColor = Color.PaleVioletRed;
-            btnUserInfo.BorderRadius = 20;
-            btnUserInfo.BorderSize = 0;
-            btnUserInfo.FlatAppearance.BorderSize = 0;
-            btnUserInfo.FlatStyle = FlatStyle.Flat;
-            btnUserInfo.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnUserInfo.ForeColor = Color.White;
-            btnUserInfo.Image = (Image)resources.GetObject("btnUserInfo.Image");
-            btnUserInfo.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUserInfo.Location = new Point(1044, 56);
-            btnUserInfo.Name = "btnUserInfo";
-            btnUserInfo.Size = new Size(134, 50);
-            btnUserInfo.TabIndex = 1;
-            btnUserInfo.Text = "User";
-            btnUserInfo.TextColor = Color.White;
-            btnUserInfo.UseVisualStyleBackColor = false;
-            btnUserInfo.Click += buttonRadius1_Click;
-            btnUserInfo.MouseLeave += buttonRadius1_MouseLeave;
-            btnUserInfo.MouseMove += buttonRadius1_MouseMove;
+            picAvatar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            picAvatar.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            picAvatar.BorderColor = Color.RoyalBlue;
+            picAvatar.BorderColor2 = Color.HotPink;
+            picAvatar.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            picAvatar.BorderSize = 2;
+            picAvatar.GradientAngle = 50F;
+            picAvatar.Location = new Point(963, 51);
+            picAvatar.Name = "picAvatar";
+            picAvatar.Size = new Size(62, 62);
+            picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            picAvatar.TabIndex = 2;
+            picAvatar.TabStop = false;
             // 
             // btnMinimize
             // 
@@ -149,7 +146,7 @@
             pnlUser.Controls.Add(buttonRadius3);
             pnlUser.Controls.Add(buttonRadius2);
             pnlUser.ForeColor = Color.White;
-            pnlUser.Location = new Point(855, 0);
+            pnlUser.Location = new Point(835, 0);
             pnlUser.Name = "pnlUser";
             pnlUser.Size = new Size(322, 180);
             pnlUser.TabIndex = 3;
@@ -221,6 +218,7 @@
             // 
             // pnlMenu
             // 
+            pnlMenu.Controls.Add(btnUser);
             pnlMenu.Controls.Add(btnWarehouse);
             pnlMenu.Controls.Add(btnTable);
             pnlMenu.Controls.Add(btnFood);
@@ -233,6 +231,30 @@
             pnlMenu.Name = "pnlMenu";
             pnlMenu.Size = new Size(207, 753);
             pnlMenu.TabIndex = 2;
+            // 
+            // btnUser
+            // 
+            btnUser.BackColor = Color.Transparent;
+            btnUser.BackgroundColor = Color.Transparent;
+            btnUser.BorderColor = Color.PaleVioletRed;
+            btnUser.BorderRadius = 20;
+            btnUser.BorderSize = 0;
+            btnUser.Dock = DockStyle.Top;
+            btnUser.FlatAppearance.BorderSize = 0;
+            btnUser.FlatStyle = FlatStyle.Flat;
+            btnUser.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnUser.ForeColor = Color.White;
+            btnUser.Image = (Image)resources.GetObject("btnUser.Image");
+            btnUser.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUser.Location = new Point(10, 425);
+            btnUser.Name = "btnUser";
+            btnUser.Size = new Size(187, 65);
+            btnUser.TabIndex = 9;
+            btnUser.Text = "              User";
+            btnUser.TextAlign = ContentAlignment.MiddleLeft;
+            btnUser.TextColor = Color.White;
+            btnUser.UseVisualStyleBackColor = false;
+            btnUser.Click += btnUser_Click;
             // 
             // btnWarehouse
             // 
@@ -385,9 +407,37 @@
             pnlContent.ForeColor = Color.White;
             pnlContent.Location = new Point(207, 119);
             pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(1178, 634);
+            pnlContent.Size = new Size(1158, 614);
             pnlContent.TabIndex = 4;
             pnlContent.TextColor = Color.White;
+            // 
+            // panel1
+            // 
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(207, 733);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1178, 20);
+            panel1.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            panel2.Dock = DockStyle.Right;
+            panel2.Location = new Point(1365, 119);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(20, 614);
+            panel2.TabIndex = 6;
+            // 
+            // lblUserInfor
+            // 
+            lblUserInfor.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblUserInfor.AutoSize = true;
+            lblUserInfor.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            lblUserInfor.ForeColor = SystemColors.Control;
+            lblUserInfor.Location = new Point(1043, 73);
+            lblUserInfor.Name = "lblUserInfor";
+            lblUserInfor.Size = new Size(61, 20);
+            lblUserInfor.TabIndex = 3;
+            lblUserInfor.Text = "label1";
             // 
             // frmMain
             // 
@@ -396,6 +446,8 @@
             BackColor = Color.FromArgb(22, 24, 35);
             ClientSize = new Size(1385, 753);
             Controls.Add(pnlContent);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(pnlHeader);
             Controls.Add(pnlMenu);
             FormBorderStyle = FormBorderStyle.None;
@@ -407,6 +459,8 @@
             FormClosed += frmMain_FormClosed;
             Load += frmMain_Load;
             pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picAvatar).EndInit();
             pnlUser.ResumeLayout(false);
             pnlMenu.ResumeLayout(false);
             pnlLogo.ResumeLayout(false);
@@ -426,7 +480,6 @@
         private Custom.ButtonRadius btnFood;
         private Custom.ButtonRadius btnMinimize;
         private Custom.ButtonRadius btnClose;
-        private Custom.ButtonRadius btnUserInfo;
         private Custom.PanelRadius pnlUser;
         private Custom.ButtonRadius buttonRadius3;
         private Custom.ButtonRadius buttonRadius2;
@@ -434,5 +487,10 @@
         private Panel pnlPadingRight;
         private Panel pnlPadingLeft;
         private Custom.ButtonRadius buttonRadius4;
+        private Custom.ButtonRadius btnUser;
+        private Panel panel1;
+        private Panel panel2;
+        private Custom.PictureBoxCustom picAvatar;
+        private Label lblUserInfor;
     }
 }
