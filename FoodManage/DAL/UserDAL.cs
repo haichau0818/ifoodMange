@@ -30,6 +30,35 @@ namespace FoodManage.DAL
         #endregion
 
 
+        public List<DTO_Users> getAll() {
+        
+            List<DTO_Users> listUser = new List<DTO_Users>();
+
+
+            string qry = @"USP_GetAll";
+
+            DataTable result = DataProvider.Instance.ExecuteQuery(qry);
+            foreach (DataRow dr in result.Rows)
+            {
+                DTO_Users dt = new DTO_Users();
+
+                dt.Id = (int)dr["id"];
+                dt.FullName = dr["fullname"].ToString();
+                dt.Password = dr["password"].ToString();
+                dt.Email = dr["email"].ToString();
+                dt.Phonenumber = dr["phonenumber"].ToString();
+                dt.Gender = Convert.ToBoolean(dr["gender"]);
+                dt.Address = dr["address"].ToString();
+                dt.Dateofbird = (dr["dateofbird"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : Convert.ToDateTime(dr["dateofbird"]);
+                dt.Role = (int)dr["role"];
+                dt.Avatar = (dr["avatar"] == DBNull.Value) ? null : (byte[])(dr["avatar"]);
+                listUser.Add(dt);
+            }
+           
+            
+            return listUser;
+        
+        }
         public DTO_Users login(string email, string password)
         {
             string qry = "USP_Login @email , @password";

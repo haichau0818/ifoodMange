@@ -1,4 +1,5 @@
-﻿using FoodManage.GUI.Forms.Users;
+﻿using FoodManage.DAL;
+using FoodManage.GUI.Forms.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,10 +19,21 @@ namespace FoodManage.GUI.UserControls.Users
             InitializeComponent();
         }
 
-        private void buttonRadius1_Click(object sender, EventArgs e)
+        private void btnAddUser_Click(object sender, EventArgs e)
         {
-            frmCreateUser frm = new frmCreateUser();
-            frm.ShowDialog();
+            frmCreateUser _frm = new frmCreateUser();
+            _frm.ShowDialog();
+            LoadUser();
+        }
+
+        private void uUsers_Load(object sender, EventArgs e)
+        {
+            LoadUser();
+        }
+
+        private void LoadUser()
+        {
+            dtgvListUser.DataSource = UserDAL.Instance.getAll();
         }
     }
 }

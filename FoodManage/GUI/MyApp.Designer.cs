@@ -30,7 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             pnlHeader = new Panel();
+            panelRadius1 = new Custom.PanelRadius();
             picAvatar = new Custom.PictureBoxCustom();
+            lblUserInfor = new Label();
             btnMinimize = new Custom.ButtonRadius();
             btnClose = new Custom.ButtonRadius();
             pnlUser = new Custom.PanelRadius();
@@ -39,7 +41,6 @@
             buttonRadius2 = new Custom.ButtonRadius();
             pnlMenu = new Panel();
             btnUser = new Custom.ButtonRadius();
-            btnWarehouse = new Custom.ButtonRadius();
             btnTable = new Custom.ButtonRadius();
             btnFood = new Custom.ButtonRadius();
             btnHome = new Custom.ButtonRadius();
@@ -50,8 +51,8 @@
             pnlContent = new Custom.PanelRadius();
             panel1 = new Panel();
             panel2 = new Panel();
-            lblUserInfor = new Label();
             pnlHeader.SuspendLayout();
+            panelRadius1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
             pnlUser.SuspendLayout();
             pnlMenu.SuspendLayout();
@@ -62,8 +63,7 @@
             // 
             // pnlHeader
             // 
-            pnlHeader.Controls.Add(lblUserInfor);
-            pnlHeader.Controls.Add(picAvatar);
+            pnlHeader.Controls.Add(panelRadius1);
             pnlHeader.Controls.Add(btnMinimize);
             pnlHeader.Controls.Add(btnClose);
             pnlHeader.Dock = DockStyle.Top;
@@ -71,6 +71,25 @@
             pnlHeader.Name = "pnlHeader";
             pnlHeader.Size = new Size(1178, 119);
             pnlHeader.TabIndex = 1;
+            // 
+            // panelRadius1
+            // 
+            panelRadius1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panelRadius1.BackColor = Color.FromArgb(48, 40, 53);
+            panelRadius1.BackgroundColor = Color.FromArgb(48, 40, 53);
+            panelRadius1.BorderColor = Color.PaleVioletRed;
+            panelRadius1.BorderRadius = 20;
+            panelRadius1.BorderSize = 0;
+            panelRadius1.colorBot = Color.Empty;
+            panelRadius1.colorTop = Color.Empty;
+            panelRadius1.Controls.Add(picAvatar);
+            panelRadius1.Controls.Add(lblUserInfor);
+            panelRadius1.ForeColor = Color.White;
+            panelRadius1.Location = new Point(938, 37);
+            panelRadius1.Name = "panelRadius1";
+            panelRadius1.Size = new Size(220, 76);
+            panelRadius1.TabIndex = 5;
+            panelRadius1.TextColor = Color.White;
             // 
             // picAvatar
             // 
@@ -81,12 +100,24 @@
             picAvatar.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             picAvatar.BorderSize = 2;
             picAvatar.GradientAngle = 50F;
-            picAvatar.Location = new Point(963, 51);
+            picAvatar.Location = new Point(18, 8);
             picAvatar.Name = "picAvatar";
             picAvatar.Size = new Size(62, 62);
             picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
             picAvatar.TabIndex = 2;
             picAvatar.TabStop = false;
+            // 
+            // lblUserInfor
+            // 
+            lblUserInfor.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblUserInfor.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            lblUserInfor.ForeColor = SystemColors.Control;
+            lblUserInfor.ImageAlign = ContentAlignment.TopLeft;
+            lblUserInfor.Location = new Point(88, 14);
+            lblUserInfor.Name = "lblUserInfor";
+            lblUserInfor.Size = new Size(119, 56);
+            lblUserInfor.TabIndex = 3;
+            lblUserInfor.Text = "Name";
             // 
             // btnMinimize
             // 
@@ -219,7 +250,6 @@
             // pnlMenu
             // 
             pnlMenu.Controls.Add(btnUser);
-            pnlMenu.Controls.Add(btnWarehouse);
             pnlMenu.Controls.Add(btnTable);
             pnlMenu.Controls.Add(btnFood);
             pnlMenu.Controls.Add(btnHome);
@@ -246,40 +276,17 @@
             btnUser.ForeColor = Color.White;
             btnUser.Image = (Image)resources.GetObject("btnUser.Image");
             btnUser.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUser.Location = new Point(10, 425);
+            btnUser.Location = new Point(10, 360);
             btnUser.Name = "btnUser";
             btnUser.Size = new Size(187, 65);
             btnUser.TabIndex = 9;
-            btnUser.Text = "              User";
+            btnUser.Text = "              Manage User";
             btnUser.TextAlign = ContentAlignment.MiddleLeft;
             btnUser.TextColor = Color.White;
             btnUser.UseVisualStyleBackColor = false;
             btnUser.Click += btnUser_Click;
-            // 
-            // btnWarehouse
-            // 
-            btnWarehouse.BackColor = Color.Transparent;
-            btnWarehouse.BackgroundColor = Color.Transparent;
-            btnWarehouse.BorderColor = Color.PaleVioletRed;
-            btnWarehouse.BorderRadius = 20;
-            btnWarehouse.BorderSize = 0;
-            btnWarehouse.Dock = DockStyle.Top;
-            btnWarehouse.FlatAppearance.BorderSize = 0;
-            btnWarehouse.FlatStyle = FlatStyle.Flat;
-            btnWarehouse.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnWarehouse.ForeColor = Color.White;
-            btnWarehouse.Image = (Image)resources.GetObject("btnWarehouse.Image");
-            btnWarehouse.ImageAlign = ContentAlignment.MiddleLeft;
-            btnWarehouse.Location = new Point(10, 360);
-            btnWarehouse.Name = "btnWarehouse";
-            btnWarehouse.Size = new Size(187, 65);
-            btnWarehouse.TabIndex = 6;
-            btnWarehouse.Text = "              Ware House";
-            btnWarehouse.TextAlign = ContentAlignment.MiddleLeft;
-            btnWarehouse.TextColor = Color.White;
-            btnWarehouse.UseVisualStyleBackColor = false;
-            btnWarehouse.MouseLeave += btnWarehouse_MouseLeave;
-            btnWarehouse.MouseMove += btnWarehouse_MouseMove;
+            btnUser.MouseLeave += btnUser_MouseLeave;
+            btnUser.MouseMove += btnUser_MouseMove;
             // 
             // btnTable
             // 
@@ -427,18 +434,6 @@
             panel2.Size = new Size(20, 614);
             panel2.TabIndex = 6;
             // 
-            // lblUserInfor
-            // 
-            lblUserInfor.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblUserInfor.AutoSize = true;
-            lblUserInfor.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUserInfor.ForeColor = SystemColors.Control;
-            lblUserInfor.Location = new Point(1043, 73);
-            lblUserInfor.Name = "lblUserInfor";
-            lblUserInfor.Size = new Size(61, 20);
-            lblUserInfor.TabIndex = 3;
-            lblUserInfor.Text = "label1";
-            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -459,7 +454,7 @@
             FormClosed += frmMain_FormClosed;
             Load += frmMain_Load;
             pnlHeader.ResumeLayout(false);
-            pnlHeader.PerformLayout();
+            panelRadius1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picAvatar).EndInit();
             pnlUser.ResumeLayout(false);
             pnlMenu.ResumeLayout(false);
@@ -475,7 +470,6 @@
         private Panel pnlLogo;
         private PictureBox pictureBox1;
         private Custom.ButtonRadius btnHome;
-        private Custom.ButtonRadius btnWarehouse;
         private Custom.ButtonRadius btnTable;
         private Custom.ButtonRadius btnFood;
         private Custom.ButtonRadius btnMinimize;
@@ -492,5 +486,6 @@
         private Panel panel2;
         private Custom.PictureBoxCustom picAvatar;
         private Label lblUserInfor;
+        private Custom.PanelRadius panelRadius1;
     }
 }

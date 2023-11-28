@@ -62,15 +62,7 @@ namespace FoodManage.GUI
             btnTable.BackColor = Color.FromArgb(48, 40, 53);
         }
 
-        private void btnWarehouse_MouseLeave(object sender, EventArgs e)
-        {
-            btnWarehouse.BackColor = Color.Transparent;
-        }
-
-        private void btnWarehouse_MouseMove(object sender, MouseEventArgs e)
-        {
-            btnWarehouse.BackColor = Color.FromArgb(48, 40, 53);
-        }
+       
 
         private void btnClose_MouseMove(object sender, MouseEventArgs e)
         {
@@ -198,5 +190,20 @@ namespace FoodManage.GUI
             return returnImage;
         }
         #endregion
+
+        private void btnWarehouse_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUser_MouseMove(object sender, MouseEventArgs e)
+        {
+            btnUser.BackColor = Color.FromArgb(48, 40, 53);
+        }
+
+        private void btnUser_MouseLeave(object sender, EventArgs e)
+        {
+            btnUser.BackColor = Color.Transparent;
+        }
     }
 }
