@@ -14,8 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bunifu.UI.WinForms" Version="6.1.0" />
-    <PackageReference Include="Bunifu.Utils" Version="1.0.5" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
