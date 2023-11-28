@@ -30,30 +30,61 @@
         {
             components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            dtgvListUser = new DataGridView();
+            dTOUsersBindingSource = new BindingSource(components);
             panelRadius1 = new Custom.PanelRadius();
             btnExportExcel = new Custom.ButtonRadius();
             btnAddUser = new Custom.ButtonRadius();
             panelRadius2 = new Custom.PanelRadius();
-            dtgvListUser = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            fullNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            genderDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
-            emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            passwordDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            phonenumberDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dateofbirdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            roleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            avatarDataGridViewImageColumn = new DataGridViewImageColumn();
-            dTOUsersBindingSource = new BindingSource(components);
-            panelRadius1.SuspendLayout();
-            panelRadius2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvListUser).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dTOUsersBindingSource).BeginInit();
+            panelRadius1.SuspendLayout();
+            panelRadius2.SuspendLayout();
             SuspendLayout();
+            // 
+            // dtgvListUser
+            // 
+            dtgvListUser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvListUser.BackgroundColor = Color.FromArgb(48, 40, 53);
+            dtgvListUser.CellBorderStyle = DataGridViewCellBorderStyle.RaisedHorizontal;
+            dtgvListUser.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(48, 40, 53);
+            dataGridViewCellStyle1.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(252, 252, 252);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(48, 40, 53);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(252, 252, 252);
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dtgvListUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dtgvListUser.ColumnHeadersHeight = 50;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(48, 40, 53);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(194, 203, 199);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(48, 40, 53);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dtgvListUser.DefaultCellStyle = dataGridViewCellStyle2;
+            dtgvListUser.Dock = DockStyle.Fill;
+            dtgvListUser.EnableHeadersVisualStyles = false;
+            dtgvListUser.Location = new Point(0, 0);
+            dtgvListUser.Name = "dtgvListUser";
+            dtgvListUser.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dtgvListUser.RowHeadersVisible = false;
+            dtgvListUser.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(252, 252, 252);
+            dtgvListUser.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dtgvListUser.RowTemplate.Height = 32;
+            dtgvListUser.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgvListUser.Size = new Size(1150, 517);
+            dtgvListUser.TabIndex = 0;
+            dtgvListUser.CellContentClick += dtgvListUser_CellContentClick;
+            // 
+            // dTOUsersBindingSource
+            // 
+            dTOUsersBindingSource.DataSource = typeof(DTO.DTO_Users);
             // 
             // panelRadius1
             // 
@@ -131,119 +162,6 @@
             panelRadius2.TabIndex = 1;
             panelRadius2.TextColor = Color.White;
             // 
-            // dtgvListUser
-            // 
-            dtgvListUser.AutoGenerateColumns = false;
-            dtgvListUser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dtgvListUser.BackgroundColor = Color.FromArgb(48, 40, 53);
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(48, 40, 53);
-            dataGridViewCellStyle1.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.FromArgb(252, 252, 252);
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(194, 203, 199);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(252, 252, 252);
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dtgvListUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dtgvListUser.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvListUser.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, fullNameDataGridViewTextBoxColumn, genderDataGridViewCheckBoxColumn, emailDataGridViewTextBoxColumn, passwordDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, phonenumberDataGridViewTextBoxColumn, dateofbirdDataGridViewTextBoxColumn, roleDataGridViewTextBoxColumn, avatarDataGridViewImageColumn });
-            dtgvListUser.DataSource = dTOUsersBindingSource;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(48, 40, 53);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(194, 203, 199);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dtgvListUser.DefaultCellStyle = dataGridViewCellStyle3;
-            dtgvListUser.Dock = DockStyle.Fill;
-            dtgvListUser.Location = new Point(0, 0);
-            dtgvListUser.Name = "dtgvListUser";
-            dtgvListUser.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(252, 252, 252);
-            dtgvListUser.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            dtgvListUser.RowTemplate.Height = 29;
-            dtgvListUser.ShowCellToolTips = false;
-            dtgvListUser.Size = new Size(1150, 517);
-            dtgvListUser.TabIndex = 0;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(48, 40, 53);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(194, 203, 199);
-            idDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            idDataGridViewTextBoxColumn.HeaderText = "ID";
-            idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            fullNameDataGridViewTextBoxColumn.HeaderText = "Full name";
-            fullNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            // 
-            // genderDataGridViewCheckBoxColumn
-            // 
-            genderDataGridViewCheckBoxColumn.DataPropertyName = "Gender";
-            genderDataGridViewCheckBoxColumn.HeaderText = "Gender";
-            genderDataGridViewCheckBoxColumn.MinimumWidth = 6;
-            genderDataGridViewCheckBoxColumn.Name = "genderDataGridViewCheckBoxColumn";
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            emailDataGridViewTextBoxColumn.MinimumWidth = 6;
-            emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            passwordDataGridViewTextBoxColumn.MinimumWidth = 6;
-            passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            passwordDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            addressDataGridViewTextBoxColumn.MinimumWidth = 6;
-            addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            // 
-            // phonenumberDataGridViewTextBoxColumn
-            // 
-            phonenumberDataGridViewTextBoxColumn.DataPropertyName = "Phonenumber";
-            phonenumberDataGridViewTextBoxColumn.HeaderText = "Phone number";
-            phonenumberDataGridViewTextBoxColumn.MinimumWidth = 6;
-            phonenumberDataGridViewTextBoxColumn.Name = "phonenumberDataGridViewTextBoxColumn";
-            // 
-            // dateofbirdDataGridViewTextBoxColumn
-            // 
-            dateofbirdDataGridViewTextBoxColumn.DataPropertyName = "Dateofbird";
-            dateofbirdDataGridViewTextBoxColumn.HeaderText = "Date of bird";
-            dateofbirdDataGridViewTextBoxColumn.MinimumWidth = 6;
-            dateofbirdDataGridViewTextBoxColumn.Name = "dateofbirdDataGridViewTextBoxColumn";
-            // 
-            // roleDataGridViewTextBoxColumn
-            // 
-            roleDataGridViewTextBoxColumn.DataPropertyName = "Role";
-            roleDataGridViewTextBoxColumn.HeaderText = "Role";
-            roleDataGridViewTextBoxColumn.MinimumWidth = 6;
-            roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
-            // 
-            // avatarDataGridViewImageColumn
-            // 
-            avatarDataGridViewImageColumn.DataPropertyName = "Avatar";
-            avatarDataGridViewImageColumn.HeaderText = "Avatar";
-            avatarDataGridViewImageColumn.MinimumWidth = 6;
-            avatarDataGridViewImageColumn.Name = "avatarDataGridViewImageColumn";
-            // 
-            // dTOUsersBindingSource
-            // 
-            dTOUsersBindingSource.DataSource = typeof(DTO.DTO_Users);
-            // 
             // uUsers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -254,10 +172,10 @@
             Name = "uUsers";
             Size = new Size(1150, 616);
             Load += uUsers_Load;
-            panelRadius1.ResumeLayout(false);
-            panelRadius2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgvListUser).EndInit();
             ((System.ComponentModel.ISupportInitialize)dTOUsersBindingSource).EndInit();
+            panelRadius1.ResumeLayout(false);
+            panelRadius2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -269,15 +187,5 @@
         private Custom.ButtonRadius btnAddUser;
         private Custom.ButtonRadius btnExportExcel;
         private BindingSource dTOUsersBindingSource;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
-        private DataGridViewCheckBoxColumn genderDataGridViewCheckBoxColumn;
-        private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn phonenumberDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dateofbirdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn roleDataGridViewTextBoxColumn;
-        private DataGridViewImageColumn avatarDataGridViewImageColumn;
     }
 }

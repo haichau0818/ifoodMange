@@ -113,5 +113,13 @@ namespace FoodManage.DAL
                 users.Dateofbird,
             });
         }
+
+
+        public void delete(int id) {
+
+            string qry = @"Delete from users where id = " + id + "";
+            DataProvider.Instance.ExecuteNonQuery(qry);
+        
+        }
     }
 }
