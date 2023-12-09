@@ -50,9 +50,9 @@ namespace FoodManage.DTO
             get { return address; }
             set { address = value; }
         }
-		private string gender;
+		private int gender;
 
-		public string Gender
+		public int Gender
 		{
 			get { return gender; }
 			set { gender = value; }
@@ -96,7 +96,7 @@ namespace FoodManage.DTO
 			string email,
 			string password,
 			string address,
-			string gender,
+			int gender,
 			string phonenumber,
 			DateTime dateofbird,
 			byte[] avatar,
@@ -125,7 +125,7 @@ namespace FoodManage.DTO
             this.email = dr["email"].ToString();
             this.password =dr["password"].ToString();
             this.address = dr["address"].ToString();
-            this.gender = dr["gender"].ToString();
+            this.gender = Convert.ToInt32(dr["gender"]);
             this.phonenumber=dr["phonenumber"].ToString();
             this.dateofbird=(DateTime)dr["dateofbird"];
             this.avatar = (byte[])dr["avatar"];

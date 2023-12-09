@@ -80,7 +80,7 @@ namespace FoodManage.GUI.Forms.AlertBox
 
         private void timerAnimation_Tick(object sender, EventArgs e)
         {
-            pnlProgress.Width = pnlProgress.Width + 2;
+            pnlProgress.Width = pnlProgress.Width + 4;
             if (pnlProgress.Width >= 500)
                 this.Close();
         }

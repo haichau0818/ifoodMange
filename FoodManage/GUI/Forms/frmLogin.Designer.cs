@@ -35,7 +35,6 @@
             txtPassword = new Custom.TextboxCustom();
             txtEmail = new Custom.TextboxCustom();
             ckdRemember = new CheckBox();
-            lblMessageEr = new Label();
             label2 = new Label();
             picMinimize = new PictureBox();
             picClose = new PictureBox();
@@ -84,7 +83,6 @@
             pnlLogin.Controls.Add(txtPassword);
             pnlLogin.Controls.Add(txtEmail);
             pnlLogin.Controls.Add(ckdRemember);
-            pnlLogin.Controls.Add(lblMessageEr);
             pnlLogin.Controls.Add(label2);
             pnlLogin.Controls.Add(btnLogin);
             pnlLogin.ForeColor = Color.Transparent;
@@ -133,6 +131,7 @@
             txtEmail.Size = new Size(301, 35);
             txtEmail.TabIndex = 1;
             txtEmail.UnderLineStyle = false;
+            txtEmail.Leave += txtEmail_Leave;
             // 
             // ckdRemember
             // 
@@ -144,17 +143,6 @@
             ckdRemember.TabIndex = 3;
             ckdRemember.Text = "Remember me";
             ckdRemember.UseVisualStyleBackColor = true;
-            // 
-            // lblMessageEr
-            // 
-            lblMessageEr.AutoSize = true;
-            lblMessageEr.ForeColor = Color.Red;
-            lblMessageEr.Location = new Point(59, 114);
-            lblMessageEr.Name = "lblMessageEr";
-            lblMessageEr.Size = new Size(45, 20);
-            lblMessageEr.TabIndex = 12;
-            lblMessageEr.Text = "Erorr!";
-            lblMessageEr.Visible = false;
             // 
             // label2
             // 
@@ -224,7 +212,6 @@
         private Label label2;
         private PictureBox picMinimize;
         private PictureBox picClose;
-        private Label lblMessageEr;
         private Panel pnlRemember;
         private Custom.ToggleButton ckbRemember;
         private Label lblRemember;

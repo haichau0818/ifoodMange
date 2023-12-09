@@ -42,6 +42,7 @@
             picAlert.Location = new Point(24, 19);
             picAlert.Name = "picAlert";
             picAlert.Size = new Size(65, 65);
+            picAlert.SizeMode = PictureBoxSizeMode.StretchImage;
             picAlert.TabIndex = 0;
             picAlert.TabStop = false;
             // 

@@ -48,7 +48,7 @@ namespace FoodManage.DAL
                 dt.Password = dr["password"].ToString();
                 dt.Email = dr["email"].ToString();
                 dt.Phonenumber = dr["phonenumber"].ToString();
-                dt.Gender = Convert.ToString(dr["gender"]);
+                dt.Gender = Convert.ToInt32(dr["gender"]);
                 dt.Address = dr["address"].ToString();
                 dt.Dateofbird = (dr["dateofbird"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : Convert.ToDateTime(dr["dateofbird"]);
                 dt.Role = (int)dr["role"];
@@ -59,6 +59,16 @@ namespace FoodManage.DAL
 
             return listUser;
 
+        }
+
+        public bool checkEmail(string email)
+        {
+            string qry = @"Select email from users where email = '" + email + "'";
+            var value = DataProvider.Instance.ExecuteScalar(qry);
+            if (value!=null)
+                return true;
+            else
+                return false;
         }
         public DTO_Users login(string email, string password)
         {
@@ -77,7 +87,7 @@ namespace FoodManage.DAL
                 dt.Password = dr["password"].ToString();
                 dt.Email = dr["email"].ToString();
                 dt.Phonenumber = dr["phonenumber"].ToString();
-                dt.Gender = Convert.ToString(dr["gender"]);
+                dt.Gender = Convert.ToInt32(dr["gender"]);
                 dt.Address = dr["address"].ToString();
                 dt.Dateofbird = (dr["dateofbird"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : Convert.ToDateTime(dr["dateofbird"]);
                 dt.Role = (int)dr["role"];
@@ -130,6 +140,27 @@ namespace FoodManage.DAL
             string qry = @"Delete from users where id = " + id + "";
             DataProvider.Instance.ExecuteNonQuery(qry);
 
+        }
+
+        public DTO_Users getUserById(int id)
+        {
+            string qry = @"select * from users where id = " + id + "";
+            DTO_Users user = new DTO_Users();
+            DataTable dt = DataProvider.Instance.ExecuteQuery(qry);
+            foreach (DataRow dr in dt.Rows)
+            {
+                user.Id = (int)dr["id"];
+                user.FullName = dr["fullname"].ToString();
+                user.Password = dr["password"].ToString();
+                user.Email = dr["email"].ToString();
+                user.Phonenumber = dr["phonenumber"].ToString();
+                user.Gender = Convert.ToInt32(dr["gender"]);
+                user.Address = dr["address"].ToString();
+                user.Dateofbird = (dr["dateofbird"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : Convert.ToDateTime(dr["dateofbird"]);
+                user.Role = (int)dr["role"];
+                user.Avatar = (dr["avatar"] == DBNull.Value) ? null : (byte[])(dr["avatar"]);
+            }
+            return user;
         }
     }
 }

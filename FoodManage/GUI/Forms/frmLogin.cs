@@ -54,19 +54,18 @@ namespace FoodManage.GUI.Forms
 
             if (email == "" && password == "")
             {
-                lblMessageEr.Visible = true;
-                lblMessageEr.Text = "Please enter email and password!";
+                handle.AlertBox(Color.LightGoldenrodYellow, Color.Goldenrod, "Warning", "Please enter email and password!", Properties.Resources.warning_48);
+                return;
             }
             else if (email != "" && password == "")
             {
-                lblMessageEr.Visible = true;
-                lblMessageEr.Text = "Please enter password!";
-
+                handle.AlertBox(Color.LightGoldenrodYellow, Color.Goldenrod, "Warning", "Please enter password!", Properties.Resources.warning_48);
+                return;
             }
             else if (email == "" && password != "")
             {
-                lblMessageEr.Visible = true;
-                lblMessageEr.Text = "Please enter email!";
+                handle.AlertBox(Color.LightGoldenrodYellow, Color.Goldenrod, "Warning", "Please enter email!", Properties.Resources.warning_48);
+                return;
             }
             else
             {
@@ -114,8 +113,8 @@ namespace FoodManage.GUI.Forms
                 }
                 else
                 {
-                    lblMessageEr.Visible = true;
-                    lblMessageEr.Text = "email or password not correct!";
+                    handle.AlertBox(Color.LightPink, Color.DarkRed, "Error", "Password not correct!", Properties.Resources.cancel_48);
+                    return;
                 }
             }
 
@@ -156,6 +155,16 @@ namespace FoodManage.GUI.Forms
             }
         }
 
-
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            string email = txtEmail.Text.Trim();
+            if (string.IsNullOrEmpty(email))
+                return;
+            if(!UserDAL.Instance.checkEmail(email))
+            {
+                handle.AlertBox(Color.LightGoldenrodYellow, Color.Goldenrod,"Warning","Email is not registered!", Properties.Resources.warning_48);
+                return;
+            }
+        }
     }
 }

@@ -1,7 +1,9 @@
-﻿using FoodManage.GUI.UserControls.Home;
+﻿using FoodManage.GUI.Forms.AlertBox;
+using FoodManage.GUI.UserControls.Home;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Security.Cryptography;
@@ -101,8 +103,88 @@ namespace FoodManage.ULTI
         }
 
 
+        public static void AlertBox(Color backColor, Color color, string title, string content, Image icon)
+        {
+            frmAlert _frm = new frmAlert();
+            _frm.BackgroundColorAlert = backColor;
+            _frm.ColorAlert = color;
+            _frm.TitleAlert = title;
+            _frm.ContentAlert = content;
+            _frm.IconsAlert = icon;
+            _frm.ShowDialog();
+        }
 
-        
+        public static void AlertWarning(string content)
+        {
+            frmAlert _frm = new frmAlert();
+            _frm.BackgroundColorAlert = Color.LightGoldenrodYellow;
+            _frm.ColorAlert = Color.Goldenrod;
+            _frm.TitleAlert = "Warning";
+            _frm.ContentAlert = content;
+            _frm.IconsAlert = Properties.Resources.warning_48;
+            _frm.ShowDialog();
+        }
+        public static void AlertError(string content)
+        {
+            frmAlert _frm = new frmAlert();
+            _frm.BackgroundColorAlert = Color.LightPink;
+            _frm.ColorAlert = Color.DarkRed;
+            _frm.TitleAlert = "Error";
+            _frm.ContentAlert = content;
+            _frm.IconsAlert = Properties.Resources.cancel_48;
+            _frm.ShowDialog();
+        }
+        public static void AlertSuccess(string content)
+        {
+            frmAlert _frm = new frmAlert();
+            _frm.BackgroundColorAlert = Color.LightGray;
+            _frm.ColorAlert = Color.SeaGreen;
+            _frm.TitleAlert = "Success";
+            _frm.ContentAlert = content;
+            _frm.IconsAlert = Properties.Resources.success_48;
+            _frm.ShowDialog();
+        }
+        public static void AlertInfomation(string content)
+        {
+            frmAlert _frm = new frmAlert();
+            _frm.BackgroundColorAlert = Color.LightSteelBlue;
+            _frm.ColorAlert = Color.DodgerBlue;
+            _frm.TitleAlert = "Information";
+            _frm.ContentAlert = content;
+            _frm.IconsAlert = Properties.Resources.infor_48;
+            _frm.ShowDialog();
+        }
+
+        public static DialogResult MessageBoxCustom(Color backColor,string text, string title,Image icons)
+        {
+            frmMessageBox frmMessageBox = new frmMessageBox();
+            frmMessageBox.MessageContent = text;
+            frmMessageBox.MessageTitle = title;
+            frmMessageBox.ColorMessage = backColor;
+            frmMessageBox.IconsMessage = icons;
+            frmMessageBox.ShowDialog();
+            return frmMessageBox.DialogResult;
+        }
+        public static DialogResult MessageBoxInformation(string text)
+        {
+            frmMessageBox frmMessageBox = new frmMessageBox();
+            frmMessageBox.MessageContent = text;
+            frmMessageBox.MessageTitle = "Information";
+            frmMessageBox.ColorMessage = Color.DodgerBlue;
+            frmMessageBox.IconsMessage = Properties.Resources.infor_48;
+            frmMessageBox.ShowDialog();
+            return frmMessageBox.DialogResult;
+        }
+        public static DialogResult MessageBoxWarning(string text)
+        {
+            frmMessageBox frmMessageBox = new frmMessageBox();
+            frmMessageBox.MessageContent = text;
+            frmMessageBox.MessageTitle = "Warning";
+            frmMessageBox.ColorMessage = Color.Goldenrod;
+            frmMessageBox.IconsMessage = Properties.Resources.warning_48;
+            frmMessageBox.ShowDialog();
+            return frmMessageBox.DialogResult;
+        }
 
     }
 }

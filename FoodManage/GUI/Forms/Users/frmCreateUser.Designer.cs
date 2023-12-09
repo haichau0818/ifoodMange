@@ -75,7 +75,7 @@
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(816, 51);
+            pnlTop.Size = new Size(808, 79);
             pnlTop.TabIndex = 1;
             pnlTop.MouseDown += pnlTop_MouseDown;
             // 
@@ -84,7 +84,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(233, 236, 239);
-            label1.Location = new Point(9, 9);
+            label1.Location = new Point(12, 20);
             label1.Name = "label1";
             label1.Size = new Size(282, 34);
             label1.TabIndex = 700;
@@ -93,7 +93,7 @@
             // picMinimize
             // 
             picMinimize.Image = (Image)resources.GetObject("picMinimize.Image");
-            picMinimize.Location = new Point(739, 9);
+            picMinimize.Location = new Point(732, 9);
             picMinimize.Name = "picMinimize";
             picMinimize.Size = new Size(32, 32);
             picMinimize.TabIndex = 1;
@@ -103,7 +103,7 @@
             // picCloseForm
             // 
             picCloseForm.Image = (Image)resources.GetObject("picCloseForm.Image");
-            picCloseForm.Location = new Point(772, 9);
+            picCloseForm.Location = new Point(765, 9);
             picCloseForm.Name = "picCloseForm";
             picCloseForm.Size = new Size(32, 32);
             picCloseForm.TabIndex = 0;
@@ -118,7 +118,7 @@
             txtFullname.BoderSize = 2;
             txtFullname.BorderColor = Color.FromArgb(227, 230, 233);
             txtFullname.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtFullname.Location = new Point(62, 102);
+            txtFullname.Location = new Point(61, 133);
             txtFullname.Multiline = false;
             txtFullname.Name = "txtFullname";
             txtFullname.Padding = new Padding(7);
@@ -134,7 +134,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(153, 137, 147);
-            label2.Location = new Point(67, 84);
+            label2.Location = new Point(66, 115);
             label2.Name = "label2";
             label2.Size = new Size(94, 20);
             label2.TabIndex = 100;
@@ -145,7 +145,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(153, 137, 147);
-            label3.Location = new Point(67, 158);
+            label3.Location = new Point(66, 189);
             label3.Name = "label3";
             label3.Size = new Size(57, 20);
             label3.TabIndex = 101;
@@ -159,7 +159,7 @@
             txtEmail.BoderSize = 2;
             txtEmail.BorderColor = Color.FromArgb(227, 230, 233);
             txtEmail.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtEmail.Location = new Point(62, 176);
+            txtEmail.Location = new Point(61, 207);
             txtEmail.Multiline = false;
             txtEmail.Name = "txtEmail";
             txtEmail.Padding = new Padding(7);
@@ -169,13 +169,14 @@
             txtEmail.Size = new Size(312, 35);
             txtEmail.TabIndex = 2;
             txtEmail.UnderLineStyle = false;
+            txtEmail.Leave += txtEmail_Leave;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(153, 137, 147);
-            label4.Location = new Point(67, 232);
+            label4.Location = new Point(66, 263);
             label4.Name = "label4";
             label4.Size = new Size(134, 20);
             label4.TabIndex = 101;
@@ -189,7 +190,7 @@
             txtPhoneNumber.BoderSize = 2;
             txtPhoneNumber.BorderColor = Color.FromArgb(227, 230, 233);
             txtPhoneNumber.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPhoneNumber.Location = new Point(62, 250);
+            txtPhoneNumber.Location = new Point(61, 281);
             txtPhoneNumber.Multiline = false;
             txtPhoneNumber.Name = "txtPhoneNumber";
             txtPhoneNumber.Padding = new Padding(7);
@@ -205,7 +206,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(153, 137, 147);
-            label5.Location = new Point(67, 304);
+            label5.Location = new Point(66, 335);
             label5.Name = "label5";
             label5.Size = new Size(78, 20);
             label5.TabIndex = 103;
@@ -219,7 +220,7 @@
             txtAddress.BoderSize = 2;
             txtAddress.BorderColor = Color.FromArgb(227, 230, 233);
             txtAddress.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtAddress.Location = new Point(62, 322);
+            txtAddress.Location = new Point(61, 353);
             txtAddress.Multiline = true;
             txtAddress.Name = "txtAddress";
             txtAddress.Padding = new Padding(7);
@@ -235,7 +236,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(153, 137, 147);
-            label6.Location = new Point(67, 429);
+            label6.Location = new Point(66, 460);
             label6.Name = "label6";
             label6.Size = new Size(89, 20);
             label6.TabIndex = 105;
@@ -249,7 +250,7 @@
             txtPassword.BoderSize = 2;
             txtPassword.BorderColor = Color.FromArgb(227, 230, 233);
             txtPassword.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPassword.Location = new Point(62, 447);
+            txtPassword.Location = new Point(61, 478);
             txtPassword.Multiline = false;
             txtPassword.Name = "txtPassword";
             txtPassword.Padding = new Padding(7);
@@ -265,7 +266,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             label7.ForeColor = Color.FromArgb(153, 137, 147);
-            label7.Location = new Point(67, 495);
+            label7.Location = new Point(66, 526);
             label7.Name = "label7";
             label7.Size = new Size(164, 20);
             label7.TabIndex = 107;
@@ -279,7 +280,7 @@
             txtConfirmPassword.BoderSize = 2;
             txtConfirmPassword.BorderColor = Color.FromArgb(227, 230, 233);
             txtConfirmPassword.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            txtConfirmPassword.Location = new Point(62, 513);
+            txtConfirmPassword.Location = new Point(61, 544);
             txtConfirmPassword.Multiline = false;
             txtConfirmPassword.Name = "txtConfirmPassword";
             txtConfirmPassword.Padding = new Padding(7);
@@ -289,13 +290,14 @@
             txtConfirmPassword.Size = new Size(312, 35);
             txtConfirmPassword.TabIndex = 6;
             txtConfirmPassword.UnderLineStyle = false;
+            txtConfirmPassword.Leave += txtConfirmPassword_Leave;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             label8.ForeColor = Color.FromArgb(153, 137, 147);
-            label8.Location = new Point(434, 84);
+            label8.Location = new Point(433, 115);
             label8.Name = "label8";
             label8.Size = new Size(71, 20);
             label8.TabIndex = 109;
@@ -312,7 +314,7 @@
             btnChooseAvatar.FlatStyle = FlatStyle.Flat;
             btnChooseAvatar.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnChooseAvatar.ForeColor = Color.White;
-            btnChooseAvatar.Location = new Point(429, 232);
+            btnChooseAvatar.Location = new Point(428, 263);
             btnChooseAvatar.Name = "btnChooseAvatar";
             btnChooseAvatar.Size = new Size(100, 53);
             btnChooseAvatar.TabIndex = 9;
@@ -332,7 +334,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Verdana", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(429, 513);
+            btnSave.Location = new Point(428, 544);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(315, 57);
             btnSave.TabIndex = 12;
@@ -346,7 +348,7 @@
             dtpDateOfBird.BorderColor = Color.FromArgb(227, 230, 233);
             dtpDateOfBird.BorderSize = 2;
             dtpDateOfBird.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            dtpDateOfBird.Location = new Point(429, 447);
+            dtpDateOfBird.Location = new Point(428, 478);
             dtpDateOfBird.MinimumSize = new Size(0, 35);
             dtpDateOfBird.Name = "dtpDateOfBird";
             dtpDateOfBird.Size = new Size(312, 35);
@@ -359,7 +361,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             label10.ForeColor = Color.FromArgb(153, 137, 147);
-            label10.Location = new Point(436, 430);
+            label10.Location = new Point(435, 461);
             label10.Name = "label10";
             label10.Size = new Size(111, 20);
             label10.TabIndex = 209;
@@ -378,7 +380,7 @@
             cboRole.IconColor = Color.FromArgb(227, 230, 233);
             cboRole.ListBackColor = Color.FromArgb(230, 228, 245);
             cboRole.ListTextColor = Color.DimGray;
-            cboRole.Location = new Point(429, 173);
+            cboRole.Location = new Point(428, 204);
             cboRole.MinimumSize = new Size(200, 30);
             cboRole.Name = "cboRole";
             cboRole.Padding = new Padding(2);
@@ -400,7 +402,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             label9.ForeColor = Color.FromArgb(153, 137, 147);
-            label9.Location = new Point(436, 158);
+            label9.Location = new Point(435, 189);
             label9.Name = "label9";
             label9.Size = new Size(46, 20);
             label9.TabIndex = 208;
@@ -414,7 +416,7 @@
             picAvatar.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             picAvatar.BorderSize = 2;
             picAvatar.GradientAngle = 50F;
-            picAvatar.Location = new Point(545, 232);
+            picAvatar.Location = new Point(544, 263);
             picAvatar.Name = "picAvatar";
             picAvatar.Size = new Size(196, 196);
             picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -433,7 +435,7 @@
             cboGender.IconColor = Color.FromArgb(227, 230, 233);
             cboGender.ListBackColor = Color.FromArgb(230, 228, 245);
             cboGender.ListTextColor = Color.DimGray;
-            cboGender.Location = new Point(429, 99);
+            cboGender.Location = new Point(428, 130);
             cboGender.MinimumSize = new Size(200, 30);
             cboGender.Name = "cboGender";
             cboGender.Padding = new Padding(2);
@@ -447,7 +449,7 @@
             lblFolderName.AutoSize = true;
             lblFolderName.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             lblFolderName.ForeColor = Color.FromArgb(153, 146, 152);
-            lblFolderName.Location = new Point(429, 392);
+            lblFolderName.Location = new Point(428, 423);
             lblFolderName.Name = "lblFolderName";
             lblFolderName.Size = new Size(97, 18);
             lblFolderName.TabIndex = 210;
@@ -459,7 +461,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(248, 249, 250);
-            ClientSize = new Size(816, 597);
+            ClientSize = new Size(808, 669);
             Controls.Add(lblFolderName);
             Controls.Add(label8);
             Controls.Add(picAvatar);

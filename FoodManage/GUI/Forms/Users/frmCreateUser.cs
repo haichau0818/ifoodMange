@@ -23,7 +23,7 @@ namespace FoodManage.GUI.Forms.Users
 
         private DTO_Role _role = new DTO_Role();
         private DTO_Gender _gender = new DTO_Gender();
-        private DTO_Users _user = new DTO_Users();
+        public DTO_Users _user = new DTO_Users();
 
         public bool isUpate = false;
 
@@ -61,16 +61,6 @@ namespace FoodManage.GUI.Forms.Users
         }
         #region handle
 
-        void AlertBox(Color backColor, Color color, string title, string content, Image icon)
-        {
-            frmAlert _frm = new frmAlert();
-            _frm.BackgroundColorAlert = backColor;
-            _frm.ColorAlert = color;
-            _frm.TitleAlert = title;
-            _frm.ContentAlert = content;
-            _frm.IconsAlert = icon;
-            _frm.ShowDialog();
-        }
 
         private void frmCreateUser_MouseDown(object sender, MouseEventArgs e)
         {
@@ -114,24 +104,13 @@ namespace FoodManage.GUI.Forms.Users
                 // display image in picture box
                 picAvatar.Image = new Bitmap(open.FileName);
                 // image file path
-                lblFolderName.Visible = true;
-                lblFolderName.Text = open.FileName;
-
+                //lblFolderName.Visible = true;
+                //lblFolderName.Text = open.FileName;
             }
         }
 
 
-        private void loadGender()
-        {
-            List<DTO_Gender> listGender = GenderDAL.Instance.GetAll();
-            cboGender.DataSource = listGender;
-        }
 
-        private void loadRole()
-        {
-            List<DTO_Role> listRole = RoleDAL.Instance.GetRole();
-            cboRole.DataSource = listRole;
-        }
         #endregion
 
         #region Properties
@@ -140,15 +119,16 @@ namespace FoodManage.GUI.Forms.Users
         {
             get
             {
-
                 _user.FullName = txtFullname.Text.Trim();
                 _user.Email = txtEmail.Text.Trim();
                 _user.Password = txtConfirmPassword.Text.Trim();
                 _user.Address = txtAddress.Text.Trim();
                 _user.Phonenumber = txtPhoneNumber.Text.Trim();
-                _user.Gender = cboGender.Texts.Trim();
+                //Get gender,role Id from cbx custom
+                _user.Gender = ((DTO_Gender)cboGender.SelectedItem).Id;
+                _user.Role = ((DTO_Role)cboRole.SelectedItem).Id;
+
                 _user.Avatar = handle.ConvertImageFromPictureBox(picAvatar);
-                _user.Role = Convert.ToInt32(1);
                 _user.Dateofbird = dtpDateOfBird.Value;
                 return _user;
             }
@@ -162,8 +142,8 @@ namespace FoodManage.GUI.Forms.Users
                 txtAddress.Text = value.Address;
                 txtPhoneNumber.Text = value.Phonenumber;
                 picAvatar.Image = handle.ConverByteArrayToImage(value.Avatar);
-                cboGender.ValueMember = value.Gender.ToString();
-                cboRole.ValueMember = value.Role.ToString();
+                cboGender.SelectedItem = value.Gender.ToString();
+                cboRole.SelectedItem = value.Role.ToString();
             }
         }
 
@@ -172,26 +152,76 @@ namespace FoodManage.GUI.Forms.Users
             this._userProperties = new DTO_Users();
             dtpDateOfBird.Value = DateTime.Now;
         }
+        private void loadGender()
+        {
+            List<DTO_Gender> listGender = GenderDAL.Instance.GetAll();
+            cboGender.DataSource = listGender;
+        }
 
+        private void loadRole()
+        {
+            List<DTO_Role> listRole = RoleDAL.Instance.GetRole();
+            cboRole.DataSource = listRole;
+        }
         #endregion
 
+        public frmCreateUser(int id) : this()
+        {
+            this._userProperties = UserDAL.Instance.getUserById(id);
+        }
 
         private void frmCreateUser_Load(object sender, EventArgs e)
         {
-            //load gender text and auto select first item
-            loadGender();
-            cboGender.SelectedIndex = 0;
-            loadRole();
+            
+                loadGender();
+
+                cboGender.SelectedIndex = 0;
+
+                loadRole();
+           
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!isUpate)
             {
-                if (UserDAL.Instance.Insert(this._userProperties)) {
-                   AlertBox(Color.LightGray,Color.SeaGreen,"Successfull","Add user successfully!",Properties.Resources.calendarDark);
-                   this.Close();
+                if (UserDAL.Instance.Insert(this._userProperties))
+                {
+                    handle.AlertSuccess("Add user successfully!");
+                    this.Close();
                 }
+                else
+                {
+                    handle.AlertError("Add user fail!");
+                    return;
+                }
+            }
+        }
+
+        private void txtConfirmPassword_Leave(object sender, EventArgs e)
+        {
+            string password = txtPassword.Text.Trim();
+            string confirmpass = txtConfirmPassword.Text.Trim();
+            if (!string.IsNullOrEmpty(confirmpass) && !string.IsNullOrEmpty(password))
+            {
+                if (confirmpass != password)
+                {
+                    handle.AlertError("Password confirm not corret!");
+                    txtConfirmPassword.Focus();
+                    return;
+                }
+            }
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            string email = txtEmail.Text.Trim();
+            if (!string.IsNullOrEmpty(email) && !handle.IsValidEmail(email))
+            {
+                handle.AlertError("Email invalidate!");
+                txtEmail.Focus();
+                return;
             }
         }
     }
