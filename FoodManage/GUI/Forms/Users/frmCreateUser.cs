@@ -9,15 +9,24 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 using FoodManage.DTO;
 using FoodManage.DAL;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using FoodManage.ULTI;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace FoodManage.GUI.Forms.Users
 {
     public partial class frmCreateUser : Form
     {
+
+        private DTO_Role _role = new DTO_Role();
+        private DTO_Gender _gender = new DTO_Gender();
+        private DTO_Users _user = new DTO_Users();
+
+        public bool isUpate = false;
+
+
 
         #region Rounded Corners Form
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -49,7 +58,7 @@ namespace FoodManage.GUI.Forms.Users
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
         }
-
+        #region handle form
         private void frmCreateUser_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -58,7 +67,10 @@ namespace FoodManage.GUI.Forms.Users
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
-
+        private void picMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
         private void picCloseForm_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -73,32 +85,12 @@ namespace FoodManage.GUI.Forms.Users
             }
         }
 
-        private void picMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
+        #endregion
 
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            DTO_Users user = new DTO_Users();
-            user.FullName = txtFullname.Text.Trim();
-            user.Email = txtEmail.Text;
-            user.Password = txtPassword.Text;
-            user.Phonenumber = txtPhoneNumber.Text;
-            user.Address = txtAddress.Text;
+        #region feature form
 
-            user.Gender = true;
-            Image imagee = picAvatar.Image;
-            byte[] image_aray;
-            ImageConverter converter = new ImageConverter();
-            image_aray = (byte[])converter.ConvertTo(imagee, typeof(byte[]));
-            user.Avatar = image_aray;
-            user.Dateofbird = dtpDateOfBird.Value;
-            user.Role = 1;
-            UserDAL.Instance.insert(user);
-            this.Close();
 
-        }
+
 
         private void btnChooseAvatar_Click(object sender, EventArgs e)
         {
@@ -109,7 +101,84 @@ namespace FoodManage.GUI.Forms.Users
                 // display image in picture box
                 picAvatar.Image = new Bitmap(open.FileName);
                 // image file path
-                
+                lblFolderName.Visible = true;
+                lblFolderName.Text = open.FileName;
+
+            }
+        }
+
+
+        private void loadGender()
+        {
+            List<DTO_Gender> listGender = GenderDAL.Instance.GetAll();
+            cboGender.DataSource = listGender;
+        }
+
+        private void loadRole()
+        {
+            List<DTO_Role> listRole = RoleDAL.Instance.GetRole();
+            cboRole.DataSource = listRole;
+        }
+        #endregion
+
+        #region Properties
+
+        private DTO_Users _userProperties
+        {
+            get
+            {
+
+                _user.FullName = txtFullname.Text.Trim();
+                _user.Email = txtEmail.Text.Trim();
+                _user.Password = txtConfirmPassword.Text.Trim();
+                _user.Address = txtAddress.Text.Trim();
+                _user.Phonenumber = txtPhoneNumber.Text.Trim();
+                _user.Gender = cboGender.Texts.Trim();
+                _user.Avatar = handle.ConvertImageFromPictureBox(picAvatar);
+                _user.Role = Convert.ToInt32(cboRole.ValueMember);
+                _user.Dateofbird = dtpDateOfBird.Value;
+                return _user;
+            }
+            set
+            {
+
+                _user = value;
+                txtFullname.Text = value.FullName;
+                txtEmail.Text = value.Email;
+                txtPassword.Text = value.Password;
+                txtAddress.Text = value.Address;
+                txtPhoneNumber.Text = value.Phonenumber;
+                picAvatar.Image = handle.ConverByteArrayToImage(value.Avatar);
+                cboGender.ValueMember = value.Gender.ToString();
+                cboRole.ValueMember = value.Role.ToString();
+            }
+        }
+
+        void ResetValue()
+        {
+            this._userProperties = new DTO_Users();
+            dtpDateOfBird.Value = DateTime.Now;
+        }
+
+        #endregion
+
+
+        private void frmCreateUser_Load(object sender, EventArgs e)
+        {
+            //load gender text and auto select first item
+            loadGender();
+            cboGender.SelectedIndex = 0;
+            loadRole();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (!isUpate)
+            {
+                if (UserDAL.Instance.Insert(this._userProperties)) { 
+                    //MessageBox.Show
+                    
+                }
             }
         }
     }

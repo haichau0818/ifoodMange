@@ -1,4 +1,5 @@
 ﻿using FoodManage.GUI.UserControls.Home;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,40 @@ namespace FoodManage.ULTI
 {
     public class handle
     {
+        public static byte[] ConvertImageFromPictureBox(PictureBox pic)
+        {
+            Image image = pic.Image;
+            byte[] image_aray;
+            ImageConverter converter = new ImageConverter();
+            image_aray = (byte[])converter.ConvertTo(image, typeof(byte[]));
+            return image_aray;
+        }
+
+        public static Image ConverByteArrayToImage(byte[] bytesArr)
+        {
+            using (MemoryStream memstr = new MemoryStream(bytesArr))
+            {
+                Image img = Image.FromStream(memstr);
+                return img;
+            }
+        }
+        public static bool IsValidEmail(string eMail)
+        {
+            bool Result = false;
+
+            try
+            {
+                var eMailValidator = new System.Net.Mail.MailAddress(eMail);
+
+                Result = (eMail.LastIndexOf(".") > eMail.LastIndexOf("@"));
+            }
+            catch
+            {
+                Result = false;
+            };
+
+            return Result;
+        }
         public static string Encrypt(string key, string plainText)
         {
             byte[] iv = new byte[16];

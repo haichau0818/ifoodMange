@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateUser));
             pnlTop = new Panel();
             label1 = new Label();
@@ -47,22 +48,27 @@
             txtConfirmPassword = new Custom.TextboxCustom();
             label8 = new Label();
             btnChooseAvatar = new Custom.ButtonRadius();
-            btnCreate = new Custom.ButtonRadius();
+            btnSave = new Custom.ButtonRadius();
             dtpDateOfBird = new Custom.DatimePickerCustom();
             label10 = new Label();
             cboRole = new Custom.ComboBoxCustom();
+            dTORoleBindingSource = new BindingSource(components);
+            dTOUsersBindingSource = new BindingSource(components);
             label9 = new Label();
             picAvatar = new Custom.PictureBoxCustom();
             cboGender = new Custom.ComboBoxCustom();
+            lblFolderName = new Label();
             pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picMinimize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCloseForm).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dTORoleBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dTOUsersBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
             SuspendLayout();
             // 
             // pnlTop
             // 
-            pnlTop.BackColor = Color.FromArgb(0, 150, 136);
+            pnlTop.BackColor = Color.FromArgb(208, 27, 69);
             pnlTop.Controls.Add(label1);
             pnlTop.Controls.Add(picMinimize);
             pnlTop.Controls.Add(picCloseForm);
@@ -315,25 +321,25 @@
             btnChooseAvatar.UseVisualStyleBackColor = false;
             btnChooseAvatar.Click += btnChooseAvatar_Click;
             // 
-            // btnCreate
+            // btnSave
             // 
-            btnCreate.BackColor = Color.FromArgb(0, 123, 255);
-            btnCreate.BackgroundColor = Color.FromArgb(0, 123, 255);
-            btnCreate.BorderColor = Color.PaleVioletRed;
-            btnCreate.BorderRadius = 10;
-            btnCreate.BorderSize = 0;
-            btnCreate.FlatAppearance.BorderSize = 0;
-            btnCreate.FlatStyle = FlatStyle.Flat;
-            btnCreate.Font = new Font("Verdana", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(429, 513);
-            btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(315, 57);
-            btnCreate.TabIndex = 12;
-            btnCreate.Text = "CREATE";
-            btnCreate.TextColor = Color.White;
-            btnCreate.UseVisualStyleBackColor = false;
-            btnCreate.Click += btnCreate_Click;
+            btnSave.BackColor = Color.FromArgb(0, 123, 255);
+            btnSave.BackgroundColor = Color.FromArgb(0, 123, 255);
+            btnSave.BorderColor = Color.PaleVioletRed;
+            btnSave.BorderRadius = 10;
+            btnSave.BorderSize = 0;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Verdana", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(429, 513);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(315, 57);
+            btnSave.TabIndex = 12;
+            btnSave.Text = "CREATE";
+            btnSave.TextColor = Color.White;
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // dtpDateOfBird
             // 
@@ -364,6 +370,8 @@
             cboRole.BackColor = SystemColors.Window;
             cboRole.BorderColor = Color.FromArgb(227, 230, 233);
             cboRole.BorderSize = 2;
+            cboRole.DataSource = dTORoleBindingSource;
+            cboRole.DisplayMember = "Name";
             cboRole.DropDownStyle = ComboBoxStyle.DropDown;
             cboRole.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             cboRole.ForeColor = Color.DimGray;
@@ -377,6 +385,15 @@
             cboRole.Size = new Size(312, 38);
             cboRole.TabIndex = 8;
             cboRole.Texts = "";
+            cboRole.ValueMember = "Id";
+            // 
+            // dTORoleBindingSource
+            // 
+            dTORoleBindingSource.DataSource = typeof(DTO.DTO_Role);
+            // 
+            // dTOUsersBindingSource
+            // 
+            dTOUsersBindingSource.DataSource = typeof(DTO.DTO_Users);
             // 
             // label9
             // 
@@ -409,6 +426,7 @@
             cboGender.BackColor = SystemColors.Window;
             cboGender.BorderColor = Color.FromArgb(227, 230, 233);
             cboGender.BorderSize = 2;
+            cboGender.DisplayMember = "Name";
             cboGender.DropDownStyle = ComboBoxStyle.DropDown;
             cboGender.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             cboGender.ForeColor = Color.DimGray;
@@ -422,6 +440,19 @@
             cboGender.Size = new Size(312, 38);
             cboGender.TabIndex = 7;
             cboGender.Texts = "";
+            cboGender.ValueMember = "Id";
+            // 
+            // lblFolderName
+            // 
+            lblFolderName.AutoSize = true;
+            lblFolderName.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblFolderName.ForeColor = Color.FromArgb(153, 146, 152);
+            lblFolderName.Location = new Point(429, 392);
+            lblFolderName.Name = "lblFolderName";
+            lblFolderName.Size = new Size(97, 18);
+            lblFolderName.TabIndex = 210;
+            lblFolderName.Text = "folder name";
+            lblFolderName.Visible = false;
             // 
             // frmCreateUser
             // 
@@ -429,6 +460,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(248, 249, 250);
             ClientSize = new Size(816, 597);
+            Controls.Add(lblFolderName);
             Controls.Add(label8);
             Controls.Add(picAvatar);
             Controls.Add(label9);
@@ -436,7 +468,7 @@
             Controls.Add(cboRole);
             Controls.Add(label10);
             Controls.Add(dtpDateOfBird);
-            Controls.Add(btnCreate);
+            Controls.Add(btnSave);
             Controls.Add(btnChooseAvatar);
             Controls.Add(label7);
             Controls.Add(txtConfirmPassword);
@@ -456,11 +488,14 @@
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Create";
+            Load += frmCreateUser_Load;
             MouseDown += frmCreateUser_MouseDown;
             pnlTop.ResumeLayout(false);
             pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picMinimize).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCloseForm).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dTORoleBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dTOUsersBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)picAvatar).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -485,12 +520,15 @@
         private Custom.TextboxCustom txtConfirmPassword;
         private Label label8;
         private Custom.ButtonRadius btnChooseAvatar;
-        private Custom.ButtonRadius btnCreate;
+        private Custom.ButtonRadius btnSave;
         private Custom.DatimePickerCustom dtpDateOfBird;
         private Label label10;
         private Custom.ComboBoxCustom cboRole;
         private Label label9;
         private Custom.PictureBoxCustom picAvatar;
         private Custom.ComboBoxCustom cboGender;
+        private BindingSource dTOUsersBindingSource;
+        private BindingSource dTORoleBindingSource;
+        private Label lblFolderName;
     }
 }

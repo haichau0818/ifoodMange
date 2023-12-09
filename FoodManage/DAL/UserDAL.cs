@@ -30,8 +30,9 @@ namespace FoodManage.DAL
         #endregion
 
 
-        public List<DTO_Users> getAll() {
-        
+        public List<DTO_Users> getAll()
+        {
+
             List<DTO_Users> listUser = new List<DTO_Users>();
 
 
@@ -47,28 +48,28 @@ namespace FoodManage.DAL
                 dt.Password = dr["password"].ToString();
                 dt.Email = dr["email"].ToString();
                 dt.Phonenumber = dr["phonenumber"].ToString();
-                dt.Gender = Convert.ToBoolean(dr["gender"]);
+                dt.Gender = Convert.ToString(dr["gender"]);
                 dt.Address = dr["address"].ToString();
                 dt.Dateofbird = (dr["dateofbird"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : Convert.ToDateTime(dr["dateofbird"]);
                 dt.Role = (int)dr["role"];
                 dt.Avatar = (dr["avatar"] == DBNull.Value) ? null : (byte[])(dr["avatar"]);
                 listUser.Add(dt);
             }
-           
-            
+
+
             return listUser;
-        
+
         }
         public DTO_Users login(string email, string password)
         {
             string qry = "USP_Login @email , @password";
 
-            DataTable result= DataProvider.Instance.ExecuteQuery(qry, new object[]
+            DataTable result = DataProvider.Instance.ExecuteQuery(qry, new object[]
             {
                 email,
                 password,
             });
-            DTO_Users dt= new DTO_Users();
+            DTO_Users dt = new DTO_Users();
             foreach (DataRow dr in result.Rows)
             {
                 //dt.id = dr["fullname"].ToString();
@@ -76,50 +77,59 @@ namespace FoodManage.DAL
                 dt.Password = dr["password"].ToString();
                 dt.Email = dr["email"].ToString();
                 dt.Phonenumber = dr["phonenumber"].ToString();
-                dt.Gender = Convert.ToBoolean(dr["gender"]);
+                dt.Gender = Convert.ToString(dr["gender"]);
                 dt.Address = dr["address"].ToString();
-                dt.Dateofbird = (dr["dateofbird"]==DBNull.Value) ? DateTime.MinValue.AddDays(1): Convert.ToDateTime(dr["dateofbird"]);
+                dt.Dateofbird = (dr["dateofbird"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : Convert.ToDateTime(dr["dateofbird"]);
                 dt.Role = (int)dr["role"];
-                dt.Avatar = (dr["avatar"]== DBNull.Value) ? null : (byte[])(dr["avatar"]);
+                dt.Avatar = (dr["avatar"] == DBNull.Value) ? null : (byte[])(dr["avatar"]);
 
             }
             return dt;
 
         }
 
-        public void insert(DTO_Users users)
+        public bool Insert(DTO_Users users)
         {
             string sql = @"USP_INSERT 
-            @fullname ,
-            @password ,
-            @email ,
-            @phonenumber ,
-            @avatar ,
-            @address ,
-            @gender ,
-            @role ,
-            @dateofbird ";
-
-            DataProvider.Instance.ExecuteNonQuery(sql,new object[]
+                            @fullname ,
+                            @password ,
+                            @email ,
+                            @phonenumber ,
+                            @avatar ,
+                            @address ,
+                            @gender ,
+                            @role ,
+                            @dateofbird ";
+            try
             {
-                users.FullName,
-                users.Password,
-                users.Email,
-                users.Phonenumber,
-                users.Avatar, 
-                users.Address,
-                users.Gender,
-                users.Role,
-                users.Dateofbird,
-            });
+                DataProvider.Instance.ExecuteNonQuery(sql, new object[]
+                {
+                    users.FullName,
+                    users.Password,
+                    users.Email,
+                    users.Phonenumber,
+                    users.Avatar,
+                    users.Address,
+                    users.Gender,
+                    users.Role,
+                    users.Dateofbird,
+                });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
 
-        public void delete(int id) {
+        public void delete(int id)
+        {
 
             string qry = @"Delete from users where id = " + id + "";
             DataProvider.Instance.ExecuteNonQuery(qry);
-        
+
         }
     }
 }

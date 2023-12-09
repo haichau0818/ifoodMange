@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Design;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
@@ -240,6 +241,88 @@ namespace FoodManage.GUI.Custom
                 if (cmbList.DropDownStyle != ComboBoxStyle.Simple)
                     cmbList.DropDownStyle = value;
             }
+        }
+
+        //-> Data
+        [Category("Data")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+        [Localizable(true)]
+        [MergableProperty(false)]
+        public ComboBox.ObjectCollection Items
+        {
+            get { return cmbList.Items; }
+        }
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        [DefaultValue(null)]
+        public object DataSource
+        {
+            get { return cmbList.DataSource; }
+            set { cmbList.DataSource = value; }
+        }
+        [Category("Data")]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [Editor("System.Windows.Forms.Design.ListControlStringCollectionEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        [Localizable(true)]
+        public AutoCompleteStringCollection AutoCompleteCustomSource
+        {
+            get { return cmbList.AutoCompleteCustomSource; }
+            set { cmbList.AutoCompleteCustomSource = value; }
+        }
+        [Category("Data")]
+        [Browsable(true)]
+        [DefaultValue(AutoCompleteSource.None)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        public AutoCompleteSource AutoCompleteSource
+        {
+            get { return cmbList.AutoCompleteSource; }
+            set { cmbList.AutoCompleteSource = value; }
+        }
+        [Category("Data")]
+        [Browsable(true)]
+        [DefaultValue(AutoCompleteMode.None)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        public AutoCompleteMode AutoCompleteMode
+        {
+            get { return cmbList.AutoCompleteMode; }
+            set { cmbList.AutoCompleteMode = value; }
+        }
+        [Category("Data")]
+        [Bindable(true)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public object SelectedItem
+        {
+            get { return cmbList.SelectedItem; }
+            set { cmbList.SelectedItem = value; }
+        }
+        [Category("Data")]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int SelectedIndex
+        {
+            get { return cmbList.SelectedIndex; }
+            set { cmbList.SelectedIndex = value; }
+        }
+        [Category("Data")]
+        [DefaultValue("")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+        [TypeConverter("System.Windows.Forms.Design.DataMemberFieldConverter, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+        public string DisplayMember
+        {
+            get { return cmbList.DisplayMember; }
+            set { cmbList.DisplayMember = value; }
+        }
+        [Category("Data")]
+        [DefaultValue("")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+        public string ValueMember
+        {
+            get { return cmbList.ValueMember; }
+            set { cmbList.ValueMember = value; }
         }
         //->Attach label events to user control event
         private void Surface_MouseLeave(object sender, EventArgs e)

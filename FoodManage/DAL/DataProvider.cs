@@ -120,8 +120,6 @@ namespace FoodManage.DAL
                         }
                     }
                 }
-
-
                 data =cmd.ExecuteScalar();
 
                 conn.Close();
