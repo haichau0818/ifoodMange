@@ -14,6 +14,7 @@ using FoodManage.DAL;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using FoodManage.ULTI;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using FoodManage.GUI.Forms.AlertBox;
 
 namespace FoodManage.GUI.Forms.Users
 {
@@ -58,7 +59,19 @@ namespace FoodManage.GUI.Forms.Users
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
         }
-        #region handle form
+        #region handle
+
+        void AlertBox(Color backColor, Color color, string title, string content, Image icon)
+        {
+            frmAlert _frm = new frmAlert();
+            _frm.BackgroundColorAlert = backColor;
+            _frm.ColorAlert = color;
+            _frm.TitleAlert = title;
+            _frm.ContentAlert = content;
+            _frm.IconsAlert = icon;
+            _frm.ShowDialog();
+        }
+
         private void frmCreateUser_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -135,7 +148,7 @@ namespace FoodManage.GUI.Forms.Users
                 _user.Phonenumber = txtPhoneNumber.Text.Trim();
                 _user.Gender = cboGender.Texts.Trim();
                 _user.Avatar = handle.ConvertImageFromPictureBox(picAvatar);
-                _user.Role = Convert.ToInt32(cboRole.ValueMember);
+                _user.Role = Convert.ToInt32(1);
                 _user.Dateofbird = dtpDateOfBird.Value;
                 return _user;
             }
@@ -175,9 +188,9 @@ namespace FoodManage.GUI.Forms.Users
         {
             if (!isUpate)
             {
-                if (UserDAL.Instance.Insert(this._userProperties)) { 
-                    //MessageBox.Show
-                    
+                if (UserDAL.Instance.Insert(this._userProperties)) {
+                   AlertBox(Color.LightGray,Color.SeaGreen,"Successfull","Add user successfully!",Properties.Resources.calendarDark);
+                   this.Close();
                 }
             }
         }
