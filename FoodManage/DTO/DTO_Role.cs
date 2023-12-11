@@ -30,21 +30,42 @@ namespace FoodManage.DTO
 			get { return expdate; }
 			set { expdate = value; }
 		}
+
+		private bool isActive;
+
+		public bool IsActive
+		{
+			get { return isActive; }
+			set { isActive = value; }
+		}
+
+		private bool isDelete;
+
+		public bool IsDelete
+		{
+			get { return isDelete; }
+			set { isDelete = value; }
+		}
+
 		public DTO_Role()
 		{
 
 		}
-		public DTO_Role(int id, string name, DateTime expdate)
+		public DTO_Role(int id, string name, DateTime expdate,bool isActive, bool isDelete)
 		{
 			this.id = id;
 			this.name = name;
 			this.expdate = expdate;
+			this.isActive = isActive;
+			this.isDelete = isDelete;
 		}
 		public DTO_Role(DataRow dr)
 		{
 			this.id = (int)dr["id"];
-			this.name = dr["name"].ToString();
-			this.expdate = Convert.ToDateTime(dr["expdate"]);
+			this.name = (string)dr["name"];
+			this.expdate = (dr["expDate"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : (DateTime)dr["expDate"];
+			this.isActive = (bool)dr["isActive"];
+			this.isDelete = (bool)dr["isDelete"];
 
         }
 	} 

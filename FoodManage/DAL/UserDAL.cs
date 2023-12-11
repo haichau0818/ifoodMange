@@ -30,38 +30,24 @@ namespace FoodManage.DAL
         #endregion
 
 
-        public List<DTO_Users> getAll()
+        public List<DTO_Users> GetAll()
         {
 
             List<DTO_Users> listUser = new List<DTO_Users>();
-
 
             string qry = @"USP_GetAll";
 
             DataTable result = DataProvider.Instance.ExecuteQuery(qry);
             foreach (DataRow dr in result.Rows)
             {
-                DTO_Users dt = new DTO_Users();
-
-                dt.Id = (int)dr["id"];
-                dt.FullName = dr["fullname"].ToString();
-                dt.Password = dr["password"].ToString();
-                dt.Email = dr["email"].ToString();
-                dt.Phonenumber = dr["phonenumber"].ToString();
-                dt.Gender = Convert.ToInt32(dr["gender"]);
-                dt.Address = dr["address"].ToString();
-                dt.Dateofbird = (dr["dateofbird"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : Convert.ToDateTime(dr["dateofbird"]);
-                dt.Role = (int)dr["role"];
-                dt.Avatar = (dr["avatar"] == DBNull.Value) ? null : (byte[])(dr["avatar"]);
+                DTO_Users dt = new DTO_Users(dr);
                 listUser.Add(dt);
             }
-
-
             return listUser;
 
         }
 
-        public bool checkEmail(string email)
+        public bool CheckEmail(string email)
         {
             string qry = @"Select email from users where email = '" + email + "'";
             var value = DataProvider.Instance.ExecuteScalar(qry);
@@ -70,7 +56,7 @@ namespace FoodManage.DAL
             else
                 return false;
         }
-        public DTO_Users login(string email, string password)
+        public DTO_Users Login(string email, string password)
         {
             string qry = "USP_Login @email , @password";
 
@@ -82,17 +68,7 @@ namespace FoodManage.DAL
             DTO_Users dt = new DTO_Users();
             foreach (DataRow dr in result.Rows)
             {
-                //dt.id = dr["fullname"].ToString();
-                dt.FullName = dr["fullname"].ToString();
-                dt.Password = dr["password"].ToString();
-                dt.Email = dr["email"].ToString();
-                dt.Phonenumber = dr["phonenumber"].ToString();
-                dt.Gender = Convert.ToInt32(dr["gender"]);
-                dt.Address = dr["address"].ToString();
-                dt.Dateofbird = (dr["dateofbird"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : Convert.ToDateTime(dr["dateofbird"]);
-                dt.Role = (int)dr["role"];
-                dt.Avatar = (dr["avatar"] == DBNull.Value) ? null : (byte[])(dr["avatar"]);
-
+                dt = new DTO_Users(dr);
             }
             return dt;
 
@@ -101,29 +77,35 @@ namespace FoodManage.DAL
         public bool Insert(DTO_Users users)
         {
             string sql = @"USP_INSERT 
-                            @fullname ,
+                            @fullName ,
                             @password ,
                             @email ,
-                            @phonenumber ,
+                            @phoneNumber ,
                             @avatar ,
                             @address ,
                             @gender ,
                             @role ,
-                            @dateofbird ";
+                            @dateOfBird ,
+                            @isDelete , 
+                            @isActive ";
             try
             {
+                //insert user with paramater
                 DataProvider.Instance.ExecuteNonQuery(sql, new object[]
-                {
-                    users.FullName,
-                    users.Password,
-                    users.Email,
-                    users.Phonenumber,
-                    users.Avatar,
-                    users.Address,
-                    users.Gender,
-                    users.Role,
-                    users.Dateofbird,
-                });
+                                                                        {
+                                                                            users.FullName,
+                                                                            users.Password,
+                                                                            users.Email,
+                                                                            users.Phonenumber,
+                                                                            users.Avatar,
+                                                                            users.Address,
+                                                                            users.Gender,
+                                                                            users.Role,
+                                                                            users.Dateofbird,
+                                                                            users.IsDelete,
+                                                                            users.IsActive
+                                                                        });
+
                 return true;
             }
             catch (Exception)
@@ -134,31 +116,42 @@ namespace FoodManage.DAL
         }
 
 
-        public void delete(int id)
+        public bool Delete(int id)
         {
+            string qry = @"Update users set isDelete = true where id = '" + id + "' ";
+            try
+            {
+                DataProvider.Instance.ExecuteNonQuery(qry);
+                return true;
+            }
+            catch (Exception)
+            {
 
-            string qry = @"Delete from users where id = " + id + "";
-            DataProvider.Instance.ExecuteNonQuery(qry);
-
+                return false;
+            }
+           
         }
-
-        public DTO_Users getUserById(int id)
+        public bool HardDelete(int id)
+        {
+            string qry = @"Delete from users where id = " + id + "";
+            try
+            {
+                DataProvider.Instance.ExecuteNonQuery(qry);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public DTO_Users GetById(int id)
         {
             string qry = @"select * from users where id = " + id + "";
             DTO_Users user = new DTO_Users();
             DataTable dt = DataProvider.Instance.ExecuteQuery(qry);
             foreach (DataRow dr in dt.Rows)
             {
-                user.Id = (int)dr["id"];
-                user.FullName = dr["fullname"].ToString();
-                user.Password = dr["password"].ToString();
-                user.Email = dr["email"].ToString();
-                user.Phonenumber = dr["phonenumber"].ToString();
-                user.Gender = Convert.ToInt32(dr["gender"]);
-                user.Address = dr["address"].ToString();
-                user.Dateofbird = (dr["dateofbird"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : Convert.ToDateTime(dr["dateofbird"]);
-                user.Role = (int)dr["role"];
-                user.Avatar = (dr["avatar"] == DBNull.Value) ? null : (byte[])(dr["avatar"]);
+                user = new DTO_Users(dr);
             }
             return user;
         }

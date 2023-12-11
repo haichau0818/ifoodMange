@@ -35,6 +35,7 @@
             lblUserInfor = new Label();
             btnMinimize = new Custom.ButtonRadius();
             btnClose = new Custom.ButtonRadius();
+            lblNameForm = new Label();
             pnlUser = new Custom.PanelRadius();
             buttonRadius4 = new Custom.ButtonRadius();
             buttonRadius3 = new Custom.ButtonRadius();
@@ -48,6 +49,9 @@
             pnlPadingLeft = new Panel();
             pnlLogo = new Panel();
             pictureBox1 = new PictureBox();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             pnlContent = new Custom.PanelRadius();
             panel1 = new Panel();
             panel2 = new Panel();
@@ -66,10 +70,11 @@
             pnlHeader.Controls.Add(panelRadius1);
             pnlHeader.Controls.Add(btnMinimize);
             pnlHeader.Controls.Add(btnClose);
+            pnlHeader.Controls.Add(lblNameForm);
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.Location = new Point(207, 0);
             pnlHeader.Name = "pnlHeader";
-            pnlHeader.Size = new Size(1178, 119);
+            pnlHeader.Size = new Size(1178, 165);
             pnlHeader.TabIndex = 1;
             // 
             // panelRadius1
@@ -85,7 +90,7 @@
             panelRadius1.Controls.Add(picAvatar);
             panelRadius1.Controls.Add(lblUserInfor);
             panelRadius1.ForeColor = Color.White;
-            panelRadius1.Location = new Point(938, 37);
+            panelRadius1.Location = new Point(938, 68);
             panelRadius1.Name = "panelRadius1";
             panelRadius1.Size = new Size(220, 76);
             panelRadius1.TabIndex = 5;
@@ -115,7 +120,7 @@
             lblUserInfor.ImageAlign = ContentAlignment.TopLeft;
             lblUserInfor.Location = new Point(88, 14);
             lblUserInfor.Name = "lblUserInfor";
-            lblUserInfor.Size = new Size(119, 56);
+            lblUserInfor.Size = new Size(76, 56);
             lblUserInfor.TabIndex = 3;
             lblUserInfor.Text = "Name";
             // 
@@ -162,6 +167,18 @@
             btnClose.Click += btnClose_Click;
             btnClose.MouseLeave += btnClose_MouseLeave;
             btnClose.MouseMove += btnClose_MouseMove;
+            // 
+            // lblNameForm
+            // 
+            lblNameForm.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblNameForm.Font = new Font("Century Gothic", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNameForm.ForeColor = SystemColors.Control;
+            lblNameForm.ImageAlign = ContentAlignment.TopLeft;
+            lblNameForm.Location = new Point(470, 66);
+            lblNameForm.Name = "lblNameForm";
+            lblNameForm.Size = new Size(230, 42);
+            lblNameForm.TabIndex = 3;
+            lblNameForm.Text = "iFood";
             // 
             // pnlUser
             // 
@@ -384,6 +401,9 @@
             // pnlLogo
             // 
             pnlLogo.Controls.Add(pictureBox1);
+            pnlLogo.Controls.Add(label3);
+            pnlLogo.Controls.Add(label2);
+            pnlLogo.Controls.Add(label1);
             pnlLogo.Dock = DockStyle.Top;
             pnlLogo.Location = new Point(0, 0);
             pnlLogo.Name = "pnlLogo";
@@ -395,10 +415,46 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(3, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(75, 90);
+            pictureBox1.Size = new Size(75, 74);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label3.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.Control;
+            label3.ImageAlign = ContentAlignment.TopLeft;
+            label3.Location = new Point(84, 51);
+            label3.Name = "label3";
+            label3.Size = new Size(52, 26);
+            label3.TabIndex = 3;
+            label3.Text = "by";
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label2.Font = new Font("Century Gothic", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label2.ForeColor = SystemColors.Control;
+            label2.ImageAlign = ContentAlignment.TopLeft;
+            label2.Location = new Point(15, 80);
+            label2.Name = "label2";
+            label2.Size = new Size(185, 36);
+            label2.TabIndex = 3;
+            label2.Text = "Kane Chau";
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label1.Font = new Font("Century Gothic", 22.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.Control;
+            label1.ImageAlign = ContentAlignment.TopLeft;
+            label1.Location = new Point(82, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(119, 42);
+            label1.TabIndex = 3;
+            label1.Text = "iFood";
             // 
             // pnlContent
             // 
@@ -412,9 +468,9 @@
             pnlContent.Controls.Add(pnlUser);
             pnlContent.Dock = DockStyle.Fill;
             pnlContent.ForeColor = Color.White;
-            pnlContent.Location = new Point(207, 119);
+            pnlContent.Location = new Point(207, 165);
             pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(1158, 614);
+            pnlContent.Size = new Size(1158, 568);
             pnlContent.TabIndex = 4;
             pnlContent.TextColor = Color.White;
             // 
@@ -429,9 +485,9 @@
             // panel2
             // 
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(1365, 119);
+            panel2.Location = new Point(1365, 165);
             panel2.Name = "panel2";
-            panel2.Size = new Size(20, 614);
+            panel2.Size = new Size(20, 568);
             panel2.TabIndex = 6;
             // 
             // frmMain
@@ -487,5 +543,9 @@
         private Custom.PictureBoxCustom picAvatar;
         private Label lblUserInfor;
         private Custom.PanelRadius panelRadius1;
+        private Label label2;
+        private Label label1;
+        private Label label3;
+        private Label lblNameForm;
     }
 }

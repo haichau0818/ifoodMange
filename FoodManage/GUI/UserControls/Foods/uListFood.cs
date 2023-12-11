@@ -22,7 +22,7 @@ namespace FoodManage.GUI.UserControls.Foods
 
         void LoadFood()
         {
-            dtgvListFood.DataSource = FoodDAL.Instance.loadTable();
+            dtgvListFood.DataSource = FoodDAL.Instance.GetAll();
         }
     }
 }

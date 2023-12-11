@@ -300,6 +300,15 @@ namespace FoodManage.GUI.Custom
             set { cmbList.SelectedItem = value; }
         }
         [Category("Data")]
+        [Bindable(true)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public object SelectedValue
+        {
+            get { return cmbList.SelectedValue; }
+            set { cmbList.SelectedValue = value; }
+        }
+        [Category("Data")]
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int SelectedIndex
@@ -324,6 +333,7 @@ namespace FoodManage.GUI.Custom
             get { return cmbList.ValueMember; }
             set { cmbList.ValueMember = value; }
         }
+
         //->Attach label events to user control event
         private void Surface_MouseLeave(object sender, EventArgs e)
         {
@@ -337,7 +347,13 @@ namespace FoodManage.GUI.Custom
 
         private void InitializeComponent()
         {
-
+            SuspendLayout();
+            // 
+            // ComboBoxCustom
+            // 
+            Name = "ComboBoxCustom";
+            Size = new Size(150, 59);
+            ResumeLayout(false);
         }
 
         //::::+

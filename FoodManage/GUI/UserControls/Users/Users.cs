@@ -53,7 +53,7 @@ namespace FoodManage.GUI.UserControls.Users
         private void LoadUser()
         {
 
-            dtgvListUser.DataSource = UserDAL.Instance.getAll();
+            dtgvListUser.DataSource = UserDAL.Instance.GetAll();
         }
 
         private void dtgvListUser_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -79,7 +79,7 @@ namespace FoodManage.GUI.UserControls.Users
                 DialogResult result = handle.MessageBoxWarning("Are u sure delete user?");
                 if (result == DialogResult.OK)
                 {
-                    UserDAL.Instance.delete(id);
+                    UserDAL.Instance.Delete(id);
                     LoadUser();
                 }
                 else if (result == DialogResult.Cancel)

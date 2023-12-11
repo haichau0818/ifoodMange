@@ -87,8 +87,6 @@ namespace FoodManage.DAL
                         }
                     }
                 }
-
-
                 data = cmd.ExecuteNonQuery();
 
                 conn.Close();
@@ -128,6 +126,5 @@ namespace FoodManage.DAL
             return data;
 
         }
-
     }
 }

@@ -142,8 +142,8 @@ namespace FoodManage.GUI.Forms.Users
                 txtAddress.Text = value.Address;
                 txtPhoneNumber.Text = value.Phonenumber;
                 picAvatar.Image = handle.ConverByteArrayToImage(value.Avatar);
-                cboGender.SelectedItem = value.Gender.ToString();
-                cboRole.SelectedItem = value.Role.ToString();
+                //cboGender.ValueMember = value.Gender.ToString();
+                //cboRole.ValueMember = value.Role.ToString();
             }
         }
 
@@ -160,14 +160,14 @@ namespace FoodManage.GUI.Forms.Users
 
         private void loadRole()
         {
-            List<DTO_Role> listRole = RoleDAL.Instance.GetRole();
+            List<DTO_Role> listRole = RoleDAL.Instance.GetAll();
             cboRole.DataSource = listRole;
         }
         #endregion
 
         public frmCreateUser(int id) : this()
         {
-            this._userProperties = UserDAL.Instance.getUserById(id);
+            this._userProperties = UserDAL.Instance.GetById(id);
         }
 
         private void frmCreateUser_Load(object sender, EventArgs e)

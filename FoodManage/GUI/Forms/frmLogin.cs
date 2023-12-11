@@ -71,7 +71,7 @@ namespace FoodManage.GUI.Forms
             {
 
                 //Get login in4 from db
-                DTO_Users login = UserDAL.Instance.login(email, password);
+                DTO_Users login = UserDAL.Instance.Login(email, password);
                 if (login.Email != null)
                 {
                     if (ckdRemember.Checked)
@@ -109,6 +109,7 @@ namespace FoodManage.GUI.Forms
                     frmMain frmMain = new frmMain();
                     frmMain._users = login;
                     this.Hide();
+                    handle.AlertSuccess("Login success!");
                     frmMain.Show();
                 }
                 else
@@ -160,7 +161,7 @@ namespace FoodManage.GUI.Forms
             string email = txtEmail.Text.Trim();
             if (string.IsNullOrEmpty(email))
                 return;
-            if(!UserDAL.Instance.checkEmail(email))
+            if(!UserDAL.Instance.CheckEmail(email))
             {
                 handle.AlertBox(Color.LightGoldenrodYellow, Color.Goldenrod,"Warning","Email is not registered!", Properties.Resources.warning_48);
                 return;

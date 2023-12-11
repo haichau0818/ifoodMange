@@ -88,8 +88,29 @@ namespace FoodManage.DTO
 			get { return role; }
 			set { role = value; }
 		}
+		private bool isDelete;
 
+		public bool IsDelete
+		{
+			get { return isDelete; }
+			set { isDelete = value; }
+		}
+		private bool isActive;
 
+		public bool IsActive
+		{
+			get { return isActive; }
+			set { isActive = value; }
+		}
+		private DateTime createAt;
+
+		public DateTime CreateAt
+		{
+			get { return createAt; }
+			set { createAt = value; }
+		}
+
+		//Contructor
 		public DTO_Users(
 			int id,
 			string fullname,
@@ -100,7 +121,10 @@ namespace FoodManage.DTO
 			string phonenumber,
 			DateTime dateofbird,
 			byte[] avatar,
-			int role
+			int role,
+			bool isActive,
+			bool isDelete,
+			DateTime createAt
 			)
 		{
 			this.id = id;
@@ -113,6 +137,9 @@ namespace FoodManage.DTO
 			this.dateofbird = dateofbird;
 			this.avatar = avatar;
 			this.role=role;
+			this.isActive=isActive;
+			this.isDelete=isDelete;
+			this.createAt=createAt;
 
         }
 		public DTO_Users()
@@ -121,15 +148,18 @@ namespace FoodManage.DTO
         public DTO_Users(DataRow dr)
 		{
 			this.id = (int)dr["id"];
-			this.fullname = dr["fullname"].ToString();
-            this.email = dr["email"].ToString();
-            this.password =dr["password"].ToString();
-            this.address = dr["address"].ToString();
+			this.fullname = (string)dr["fullName"];
+            this.email = (string)dr["email"];
+            this.password = (string)dr["password"];
+            this.address = (string)dr["address"];
             this.gender = Convert.ToInt32(dr["gender"]);
-            this.phonenumber=dr["phonenumber"].ToString();
-            this.dateofbird=(DateTime)dr["dateofbird"];
+            this.phonenumber= (string)dr["phonenumber"];
+            this.dateofbird= (dr["dateOfBird"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : (DateTime)dr["dateOfBird"];
             this.avatar = (byte[])dr["avatar"];
             this.role = (int)dr["role"];
+			this.isActive=(bool)dr["isActive"];
+			this.isDelete = (bool)dr["isDelete"];
+			this.createAt = (dr["createAt"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : (DateTime)dr["createAt"];
 
         }
 

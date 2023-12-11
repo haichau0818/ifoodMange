@@ -27,7 +27,7 @@ namespace FoodManage.DAL
         #endregion
 
 
-        public List<DTO_Foods> loadTable() {
+        public List<DTO_Foods> GetAll() {
         
             List<DTO_Foods> listTableFood= new List<DTO_Foods>();
 
@@ -43,5 +43,28 @@ namespace FoodManage.DAL
             }
             return listTableFood;
         }
+        public DTO_Foods GetById(int id)
+        {
+            DTO_Foods food = new DTO_Foods();
+            return food;
+        }
+        public DTO_Foods Search(string key)
+        {
+            DTO_Foods food = new DTO_Foods();
+            return food;
+        }
+
+        public bool Insert(DTO_Foods food) {
+            return true;
+        }
+        public bool Update(DTO_Foods food)
+        {
+            return true;
+        }
+        public bool Delete(int id)
+        {
+            return true;
+        }
     }
+
 }

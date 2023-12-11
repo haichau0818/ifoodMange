@@ -1,4 +1,5 @@
 ﻿using FoodManage.DTO;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -28,7 +29,7 @@ namespace FoodManage.DAL
 
 
 
-        public List<DTO_Role> GetRole() {
+        public List<DTO_Role> GetAll() {
 
             string qry = @"select * from roles";
             List<DTO_Role> listRole = new List<DTO_Role>();
@@ -36,14 +37,101 @@ namespace FoodManage.DAL
 
             foreach (DataRow dr in dt.Rows)
             {
-                DTO_Role dTO_Role = new DTO_Role();
-                dTO_Role.Id = (int)dr["id"];
-                dTO_Role.Name = dr["name"].ToString();
-                dTO_Role.Expdate = (dr["expdate"] == DBNull.Value) ? DateTime.MinValue.AddDays(1) : Convert.ToDateTime(dr["expdate"]);
-
+                DTO_Role dTO_Role = new DTO_Role(dr);
                 listRole.Add(dTO_Role);
             }
             return listRole;
+        }
+
+        public DTO_Role GetById(int id)
+        {
+            string qry = @"select * from roles where id = " + id + "";
+            DTO_Role role = new DTO_Role();
+            var getrole = DataProvider.Instance.ExecuteQuery(qry); 
+            foreach(DataRow dr in getrole.Rows)
+            {
+                role = new DTO_Role(dr);
+            }
+            return role;
+        }
+        public List<DTO_Role> Search(string key)
+        {
+            // fuConvertToUnSign convert key to key unsign
+            string sql = string.Format("select * from roles where dbo.fuConvertToUnsign(name) like N'%' + dbo.fuConvertToUnsign(N'{0}') + '%'", key);
+            List<DTO_Role> listRole = new List<DTO_Role>();
+            DataTable dt = DataProvider.Instance.ExecuteQuery(sql);
+            foreach (DataRow dr in dt.Rows)
+            {
+                DTO_Role role = new DTO_Role( dr );
+                listRole.Add(role);
+            }
+            return listRole;
+        }
+        public bool Insert(DTO_Role role)
+        {
+            string qry = @"";
+            try
+            {
+                int count = DataProvider.Instance.ExecuteNonQuery(qry);
+                if (count > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+        public bool Update(DTO_Role role)
+        {
+            string qry = @"";
+            try
+            {
+                int count = DataProvider.Instance.ExecuteNonQuery(qry);
+                if (count > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+        public bool Delete(int id)
+        {
+            string qry = @"";
+            try
+            {
+                int count = DataProvider.Instance.ExecuteNonQuery(qry);
+                if (count > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool HardDelete(int id)
+        {
+            string qry = @"";
+            try
+            {
+                int count = DataProvider.Instance.ExecuteNonQuery(qry);
+                if (count > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

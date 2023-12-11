@@ -117,6 +117,8 @@ namespace FoodManage.GUI
         {
 
             uFoods uListFood = new uFoods();
+            lblNameForm.Text = "Food";
+
             AddUserControl(uListFood);
 
         }
@@ -125,6 +127,7 @@ namespace FoodManage.GUI
         {
 
             uHome uListFood = new uHome();
+            lblNameForm.Text = "Home";
             AddUserControl(uListFood);
         }
 
@@ -142,11 +145,14 @@ namespace FoodManage.GUI
                 if (_users.Avatar != null)
                     picAvatar.Image = byteArrayToImage(_users.Avatar);
             }
+            btnHome_Click(null,null);
         }
 
         private void btnUser_Click(object sender, EventArgs e)
         {
             uUsers _uUsers = new uUsers();
+            lblNameForm.Text = "User";
+
             AddUserControl(_uUsers);
 
         }
